@@ -4,11 +4,24 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
+    "lint": "prettier --write \"**/*.{js,jsx,ts,tsx,md,mdx,astro}\" && eslint --fix \"src/**/*.{js,ts,jsx,tsx,astro}\"",
+    "check": "astro check --tsconfig ./tsconfig.json && npm run prettier:check",
     "build": "astro build",
     "preview": "astro preview",
+    "prettier:check": "prettier --cache --check --plugin-search-dir=. .",
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.1.1"
+    "@astrojs/check": "^0.9.4",
+    "@cloudinary/url-gen": "^1.21.0",
+    "astro": "^5.1.1",
+    "typescript": "^5.7.2"
+  },
+  "devDependencies": {
+    "@typescript-eslint/parser": "^8.18.2",
+    "eslint": "^9.17.0",
+    "eslint-plugin-astro": "^1.3.1",
+    "prettier": "^3.4.2",
+    "prettier-plugin-astro": "^0.14.1"
   }
 }
