@@ -9,6 +9,8 @@
 	],
 	"exclude": ["dist"],
 	"compilerOptions": {
+		"strict": true,
+		"verbatimModuleSyntax": true,
 		"target": "esnext",
 		"module": "esnext",
 		"resolveJsonModule": true,
@@ -16,6 +18,8 @@
 		"paths": {
 			"@components/*": ["src/components/*"],
 			"@layouts/*": ["src/layouts/*"]
-		}
+		},
+		"jsx": "react-jsx",
+		"jsxImportSource": "react"
 	}
 }

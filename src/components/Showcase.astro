@@ -1,0 +1,112 @@
+<section class="container">
+	<div class="showcaseContainer">
+		<h2 class="header">Andrei Nedelus</h2>
+		<h3 class="subHeader">Senior FrontEnd Engineer</h3>
+		<p class="text">
+			I'm a Freelance FrontEnd Developer experienced in creating modern
+			web applications and delivering high-quality, innovative solutions.
+		</p>
+	</div>
+</section>
+
+<style>
+	.container {
+		height: 35rem;
+		position: relative;
+
+		&::before {
+			content: "";
+			position: absolute;
+			inset: 0;
+			z-index: -2;
+
+			--grid-size: 60px;
+			--grid-strength: 1px;
+			--grid-dash: 10px;
+			--grid-gap: 5px;
+			--grid-color: rgba(255, 255, 255, 0.03);
+			--paper-color: transparent;
+
+			background-color: var(--paper-color);
+			background-size:
+				var(--grid-dash) var(--grid-dash),
+				var(--grid-size) var(--grid-size);
+			background-image: linear-gradient(
+					to bottom,
+					transparent var(--grid-gap),
+					var(--paper-color) var(--grid-gap)
+				),
+				linear-gradient(
+					to right,
+					var(--grid-color) var(--grid-strength),
+					transparent var(--grid-strength)
+				),
+				linear-gradient(
+					to right,
+					transparent var(--grid-gap),
+					var(--paper-color) var(--grid-gap)
+				),
+				linear-gradient(
+					to bottom,
+					var(--grid-color) var(--grid-strength),
+					transparent var(--grid-strength)
+				);
+		}
+
+		&::after {
+			content: "";
+			position: absolute;
+			z-index: -1;
+			inset: 0;
+			bottom: 50%;
+			max-width: 60rem;
+			width: 60%;
+			background: var(--light_blue_100);
+			aspect-ratio: 1 / 1;
+			margin-left: auto;
+			margin-right: auto;
+			border-radius: 100%;
+			filter: blur(100px);
+			transform: translateY(-66%);
+		}
+	}
+
+	.showcaseContainer {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		height: 100%;
+		width: 100%;
+		max-width: 80rem;
+		margin: 0 auto;
+	}
+
+	.header {
+		font-size: 4rem;
+		font-weight: 500;
+		line-height: 3.5rem;
+		margin: 1rem;
+	}
+
+	.subHeader {
+		font-size: 2rem;
+		font-weight: 400;
+		line-height: 1.5rem;
+		margin: 1rem;
+	}
+
+	.text {
+		padding: 0 2rem;
+		text-align: center;
+	}
+
+	@media only screen and (max-width: 550px) {
+		.header {
+			font-size: 12vw;
+		}
+		.subHeader {
+			font-size: 6vw;
+		}
+	}
+</style>

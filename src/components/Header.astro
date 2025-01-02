@@ -1,0 +1,73 @@
+---
+import Image from "astro/components/Image.astro";
+import logo from "../assets/logo.svg";
+---
+
+<nav id="header">
+	<div class="content">
+		<a class="logoContainer" href="/">
+			<Image
+				class="img"
+				src={logo}
+				height={40}
+				width={40}
+				alt={"logo"}
+				loading="eager"
+				decoding="sync"
+			/>
+			<span>Andrei Nedelus</span>
+		</a>
+	</div>
+</nav>
+
+<script>
+	document.body.onscroll = () => {
+		const scrollPosition = document.body.getBoundingClientRect().top;
+
+		if (Math.abs(scrollPosition) > 5) {
+			document.querySelector("#header")?.classList.add("scrolled");
+		} else {
+			document.querySelector("#header")?.classList.remove("scrolled");
+		}
+	};
+</script>
+
+<style>
+	nav {
+		position: sticky;
+		top: 0;
+		z-index: 10;
+		border-color: rgba(0, 0, 0, 0);
+
+		&.scrolled {
+			background: var(--dark_blue_100_transparent_90);
+			backdrop-filter: blur(8px);
+			border-bottom: 1px solid var(--light_purple_100);
+			transition: all 0.5s;
+			transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+		}
+	}
+
+	.content {
+		display: flex;
+		align-items: center;
+		padding: 0 2rem;
+		max-width: 80rem;
+		height: 60px;
+		margin: 0 auto;
+	}
+
+	.logoContainer {
+		display: flex;
+		gap: 1rem;
+		align-items: center;
+		text-decoration: none;
+		color: currentColor;
+
+		span {
+			font-size: 1.5rem;
+			font-weight: 600;
+			line-height: 2rem;
+		}
+	}
+</style>

@@ -16,20 +16,39 @@ const image = getThumbnail(title, description);
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
+		<style is:global>
+			@import "../styles/global.css";
+		</style>
+		<link
+			rel="stylesheet"
+			href="node_modules/modern-normalize/modern-normalize.css"
+		/>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+			rel="stylesheet"
+		/>
 		<link
 			rel="icon"
 			type="image/x-icon"
 			sizes="16x16 24x24 32x32 64x64"
-			href="/public/favicons/favicon.ico"
+			href="/favicons/favicon.ico"
 		/>
 		<meta name="language" content="English" />
 		<meta name="author" content="Andrei Nedelus" />
 		<meta name="generator" content={Astro.generator} />
-
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, shrink-to-fit=no"
+		/>
 		<meta name="description" content={description} />
 		<meta name="theme-color" content="#134e4a" />
 		<link rel="canonical" href={Astro.url} />
+		<meta
+			name="keyword"
+			content="senior, react, typescript, javascript, developer, contractor, freelancer, portfolio"
+		/>
 		<title>{title}</title>
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content={Astro.url} />
@@ -43,16 +62,6 @@ const image = getThumbnail(title, description);
 		<meta property="twitter:image" content={image} />
 	</head>
 	<body>
-		<img src={image} />
 		<slot />
 	</body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>

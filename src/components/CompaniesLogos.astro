@@ -1,0 +1,123 @@
+---
+import {Image} from "astro:assets";
+import betfairLogo from "../assets/companies/betfair-logo.svg";
+import bytexLogo from "../assets/companies/bytex-logo.svg";
+import osfLogo from "../assets/companies/osf-logo.svg";
+import sdaLogo from "../assets/companies/sda-logo.svg";
+import qstLogo from "../assets/companies/qst-logo.svg";
+type Logo = {
+	img: ImageMetadata;
+	height: number;
+	alt: string;
+};
+
+const logos: Logo[] = [
+	{
+		img: betfairLogo,
+		height: 40,
+		alt: "Betfair Romania Development Logo",
+	},
+	{img: bytexLogo, height: 50, alt: "Bytex Logo"},
+	{img: osfLogo, height: 30, alt: "OSF Digital Logo"},
+	{
+		img: sdaLogo,
+		height: 50,
+		alt: "Software Development Academy Logo",
+	},
+	{img: qstLogo, height: 50, alt: "Quick Suite Trading Logo"},
+];
+---
+
+<section>
+	<div class="container">
+		{
+			Array(3)
+				.fill(null)
+				.map(() => (
+					<div class="imagesContainer">
+						{logos.map(({alt, height, img}) => (
+							<Image
+								class="img"
+								src={img}
+								height={height}
+								alt={alt}
+								loading="eager"
+								decoding="sync"
+							/>
+						))}
+					</div>
+				))
+		}
+	</div>
+</section>
+
+<style>
+	section {
+		background-color: var(--dark_blue_100);
+		border-top: 1px solid;
+		border-bottom: 1px solid;
+		border-color: var(--light_purple_100);
+		padding: 1.5rem 0;
+	}
+	.container {
+		position: relative;
+		display: flex;
+		max-width: 80rem;
+		width: 100%;
+		margin: 0 auto;
+		overflow: hidden;
+		white-space: nowrap;
+	}
+	.container::before {
+		content: "";
+		position: absolute;
+		left: 0;
+		top: 0;
+		z-index: 1;
+		height: 100%;
+		width: 5rem;
+		background: linear-gradient(
+			90deg,
+			rgba(22, 25, 46, 1) 0%,
+			rgba(22, 25, 46, 1) 40%,
+			transparent 100%
+		);
+	}
+	.container::after {
+		content: "";
+		position: absolute;
+		right: 0;
+		top: 0;
+		z-index: 1;
+		height: 100%;
+		width: 5rem;
+		background: linear-gradient(
+			90deg,
+			transparent 0,
+			rgba(22, 25, 46, 1) 40%,
+			rgba(22, 25, 46, 1) 100%
+		);
+	}
+
+	.img {
+		padding: 0 2rem;
+		width: auto;
+	}
+
+	.imagesContainer {
+		display: flex;
+		align-items: center;
+		flex-wrap: nowrap;
+		animation: slide 20s linear infinite;
+	}
+
+	@keyframes slide {
+		0% {
+			transform: translateX(0);
+		}
+
+		100% {
+			transform: translateX(-100%);
+		}
+	}
+</style>
