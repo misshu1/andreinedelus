@@ -5,6 +5,13 @@
 	--light_purple_100: #545c91;
 	--white: #ffffff;
 	--almost_white: #d6d8de;
+
+	--zIndex_behind_2: -2;
+	--zIndex_behind_1: -1;
+	--zIndex_default: 0;
+	--zIndex_1: 1;
+	--zIndex_header: 10;
+	--zIndex_loader: 20;
 }
 
 html,
@@ -15,6 +22,7 @@ body {
 }
 
 body {
+	position: relative;
 	font-family: "Inter", serif;
 	font-optical-sizing: auto;
 	font-weight: 400;

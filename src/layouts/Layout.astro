@@ -1,67 +1,108 @@
 ---
-import {getThumbnail} from "../utils/cloudinary";
+import Image from "astro/components/Image.astro";
+import "modern-normalize/modern-normalize.css";
+import logo from "../assets/logo.svg";
+import LayoutHead from "./LayoutHead.astro";
+
 type Props = {
 	title?: string;
 	description?: string;
 };
 
-const {
-	title = "Andrei Nedelus Senior FrontEnd Developer",
-	description = "Contractor | Freelancer | Delivering Premium Front End Solutions for online business worldwide.",
-} = Astro.props;
-const image = getThumbnail(title, description);
+const {title, description} = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<style is:global>
-			@import "../styles/global.css";
-		</style>
-		<link
-			rel="stylesheet"
-			href="node_modules/modern-normalize/modern-normalize.css"
-		/>
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
-			rel="stylesheet"
-		/>
-		<link
-			rel="icon"
-			type="image/x-icon"
-			sizes="16x16 24x24 32x32 64x64"
-			href="/favicons/favicon.ico"
-		/>
-		<meta name="language" content="English" />
-		<meta name="author" content="Andrei Nedelus" />
-		<meta name="generator" content={Astro.generator} />
-		<meta
-			name="viewport"
-			content="width=device-width, initial-scale=1, shrink-to-fit=no"
-		/>
-		<meta name="description" content={description} />
-		<meta name="theme-color" content="#134e4a" />
-		<link rel="canonical" href={Astro.url} />
-		<meta
-			name="keyword"
-			content="senior, react, typescript, javascript, developer, contractor, freelancer, portfolio"
-		/>
-		<title>{title}</title>
-		<meta property="og:type" content="website" />
-		<meta property="og:url" content={Astro.url} />
-		<meta property="og:title" content={title} />
-		<meta property="og:description" content={description} />
-		<meta property="og:image" content={image} />
-		<meta property="twitter:card" content="summary_large_image" />
-		<meta property="twitter:url" content={Astro.url} />
-		<meta property="twitter:title" content={title} />
-		<meta property="twitter:description" content={description} />
-		<meta property="twitter:image" content={image} />
-	</head>
+	<LayoutHead title={title} description={description} />
 	<body>
+		<div id="loading">
+			<Image src={logo} width="200" height="200" alt="Logo" />
+		</div>
 		<slot />
 	</body>
 </html>
+
+<script is:inline>
+	const hideSpinnerWhenReady = async () => {
+		const loader = document.getElementById("loading");
+		const results = await Promise.allSettled([
+			new Promise(resolve => {
+				if (
+					document.readyState === "complete" ||
+					document.readyState === "interactive"
+				) {
+					resolve();
+				} else {
+					document.addEventListener("DOMContentLoaded", resolve);
+				}
+			}),
+			document.fonts.ready,
+		]);
+
+		const allSuccessful = results.every(
+			result => result.status === "fulfilled",
+		);
+
+		if (allSuccessful && loader) {
+			loader.classList.add("hidden");
+		} else {
+			if (loader) loader.classList.add("hidden");
+		}
+	};
+
+	hideSpinnerWhenReady();
+</script>
+
+<style>
+	@keyframes animate {
+		0% {
+			transform: scale(1);
+		}
+		25% {
+			transform: scale(1.05);
+		}
+		50% {
+			transform: scale(1);
+		}
+		75% {
+			transform: scale(1.05);
+		}
+		100% {
+			transform: scale(1);
+		}
+	}
+
+	@keyframes fade {
+		0% {
+			opacity: 1;
+		}
+		70% {
+			opacity: 1;
+		}
+		99% {
+			opacity: 0;
+		}
+		100% {
+			opacity: 0;
+			display: none;
+		}
+	}
+	#loading {
+		position: absolute;
+		inset: 0;
+		z-index: var(--zIndex_loader);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background: inherit;
+	}
+	#loading img {
+		position: absolute;
+		animation: 2s infinite animate;
+	}
+
+	#loading.hidden {
+		animation: 0.5s forwards fade;
+	}
+</style>

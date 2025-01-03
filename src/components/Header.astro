@@ -24,7 +24,7 @@ import logo from "../assets/logo.svg";
 	document.body.onscroll = () => {
 		const scrollPosition = document.body.getBoundingClientRect().top;
 
-		if (Math.abs(scrollPosition) > 5) {
+		if (Math.abs(scrollPosition) > 1) {
 			document.querySelector("#header")?.classList.add("scrolled");
 		} else {
 			document.querySelector("#header")?.classList.remove("scrolled");
@@ -34,13 +34,15 @@ import logo from "../assets/logo.svg";
 
 <style>
 	nav {
-		position: sticky;
+		position: fixed;
 		top: 0;
-		z-index: 10;
-		border-color: rgba(0, 0, 0, 0);
+		left: 0;
+		right: 0;
+		z-index: var(--zIndex_header);
+		border-color: transparent;
 
 		&.scrolled {
-			background: var(--dark_blue_100_transparent_90);
+			background: rgba(0, 0, 0, 0.1);
 			backdrop-filter: blur(8px);
 			border-bottom: 1px solid var(--light_purple_100);
 			transition: all 0.5s;

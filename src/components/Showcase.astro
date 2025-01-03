@@ -3,7 +3,7 @@
 		<h2 class="header">Andrei Nedelus</h2>
 		<h3 class="subHeader">Senior FrontEnd Engineer</h3>
 		<p class="text">
-			I'm a Freelance FrontEnd Developer experienced in creating modern
+			I'm a Freelance FrontEnd Developer, experienced in creating modern
 			web applications and delivering high-quality, innovative solutions.
 		</p>
 	</div>
@@ -18,7 +18,7 @@
 			content: "";
 			position: absolute;
 			inset: 0;
-			z-index: -2;
+			z-index: var(--zIndex_behind_2);
 
 			--grid-size: 60px;
 			--grid-strength: 1px;
@@ -56,7 +56,7 @@
 		&::after {
 			content: "";
 			position: absolute;
-			z-index: -1;
+			z-index: var(--zIndex_behind_1);
 			inset: 0;
 			bottom: 50%;
 			max-width: 60rem;
@@ -97,8 +97,10 @@
 	}
 
 	.text {
+		max-width: 40rem;
 		padding: 0 2rem;
 		text-align: center;
+		line-height: 1.5rem;
 	}
 
 	@media only screen and (max-width: 550px) {
