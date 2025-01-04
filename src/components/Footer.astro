@@ -1,0 +1,89 @@
+---
+import {Icon} from "astro-icon/components";
+import {EXTERNAL_URL} from "@utils/url";
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer>
+	<div class="content">
+		<a href="/" class="logo">
+			<Icon title="" name="logo" width={40} height={40} />
+			<span>Andrei Nedelus</span>
+		</a>
+		<p>
+			Copyright &copy; {currentYear} | All rights reserved.
+		</p>
+		<div class="iconsContainer">
+			<a href={EXTERNAL_URL.GITHUB} class="icon" target="_blank">
+				<Icon
+					title={EXTERNAL_URL.GITHUB}
+					name="ri:github-fill"
+					width={30}
+					height={30}
+				/>
+			</a>
+			<a href={EXTERNAL_URL.LINKEDIN} class="icon" target="_blank">
+				<Icon
+					title={EXTERNAL_URL.LINKEDIN}
+					name="ri:linkedin-box-fill"
+					width={30}
+					height={30}
+				/>
+			</a>
+		</div>
+	</div>
+</footer>
+
+<style>
+	footer {
+		width: 100%;
+		border-top: 1px solid var(--light_purple_100);
+	}
+
+	.content {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+		gap: 1rem;
+		padding: 2rem;
+		max-width: 80rem;
+		margin: 0 auto;
+	}
+
+	p {
+		margin: 0;
+	}
+
+	.iconsContainer {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 1rem;
+	}
+
+	.iconsContainer .icon,
+	.logo {
+		color: currentColor;
+		text-decoration: none;
+	}
+
+	.iconsContainer .icon:hover {
+		color: var(--light_blue_100);
+		transition: 0.2s;
+	}
+
+	.logo {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 1rem;
+	}
+
+	.logo span {
+		font-size: 1.5rem;
+		font-weight: 600;
+		line-height: 2rem;
+	}
+</style>
