@@ -1,0 +1,130 @@
+---
+import Image from "astro/components/Image.astro";
+import elevenWindows from "@assets/images/eleven_windows_v2.png";
+import {EXTERNAL_URL} from "@utils/url";
+---
+
+<section>
+	<div class="projectsContainer">
+		<div class="project">
+			<h2 class="title">Featured Projects</h2>
+			<div class="info">
+				<p>
+					<a
+						href={EXTERNAL_URL.ELEVEN_WINDOWS}
+						target="_blank"
+						class="link"
+						title="ElevenWindows.dev"
+					>
+						ElevenWindows.dev
+					</a>
+					It's a clone of the Windows OS, built with React, JavaScript,
+					CSS, and Styled Components.
+				</p>
+				<p>
+					Key features include full responsiveness, with an
+					Android-inspired theme on mobile devices.
+				</p>
+			</div>
+
+			<a
+				class="projectImage"
+				href={EXTERNAL_URL.ELEVEN_WINDOWS}
+				target="_blank"
+				title="ElevenWindows.dev"
+			>
+				<Image
+					class="img"
+					src={elevenWindows}
+					alt={"windows 11"}
+					loading="lazy"
+					decoding="sync"
+				/>
+			</a>
+		</div>
+	</div>
+</section>
+
+<style>
+	section {
+		width: 100%;
+	}
+
+	.title {
+		margin: 0;
+		padding: 1rem 0;
+		font-size: 2rem;
+	}
+
+	.project {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.info {
+		margin: 2rem 0;
+	}
+
+	.info p {
+		margin: 0;
+		line-height: 1.5rem;
+		text-align: center;
+	}
+
+	.projectsContainer {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		max-width: 80rem;
+		width: 100%;
+		margin: 0 auto;
+		padding: 2rem;
+	}
+
+	.projectImage {
+		position: relative;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: fit-content;
+		border-radius: 1rem;
+		background-image: linear-gradient(
+			to bottom left,
+			var(--light_blue_100),
+			var(--light_blue_100_transparent_30),
+			var(--light_blue_100)
+		);
+	}
+	.projectImage::before {
+		content: "";
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		width: 40%;
+		height: 70%;
+		filter: blur(70px);
+		z-index: var(--zIndex_behind_1);
+		background: var(--light_blue_100);
+	}
+	.projectImage::after {
+		content: "";
+		position: absolute;
+		right: 0;
+		top: 0;
+		width: 40%;
+		height: 70%;
+		filter: blur(70px);
+		z-index: var(--zIndex_behind_1);
+		background: var(--light_blue_100);
+	}
+
+	.projectImage .img {
+		border-radius: inherit;
+		height: auto;
+		width: calc(100% - 2px);
+		max-width: 800px;
+		padding: 8px;
+	}
+</style>

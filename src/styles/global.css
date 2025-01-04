@@ -1,7 +1,11 @@
 :root {
 	--dark_blue_100: #16192e;
+	--dark_blue_200: #090d1c;
 	--dark_blue_100_transparent_90: rgba(22, 25, 46, 0.1);
+	--light_blue_100_transparent_30: rgba(0, 155, 206, 0.3);
 	--light_blue_100: #009bce;
+	--light_blue_200: #4fafe8;
+
 	--light_purple_100: #545c91;
 	--white: #ffffff;
 	--almost_white: #d6d8de;
@@ -29,4 +33,20 @@ body {
 	font-style: normal;
 	background: var(--dark_blue_100);
 	color: var(--almost_white);
+}
+
+a {
+	color: var(--light_blue_200);
+	text-decoration: none;
+}
+
+a:focus {
+	outline: none;
+	box-shadow: 0 0 0 2px var(--light_blue_100);
+}
+
+.link:hover,
+.link:focus,
+.link:active {
+	color: var(--light_blue_100);
 }

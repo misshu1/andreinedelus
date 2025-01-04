@@ -21,7 +21,7 @@ import logo from "@assets/icons/logo.svg";
 </nav>
 
 <script>
-	document.body.onscroll = () => {
+	const updateHeader = () => {
 		const scrollPosition = document.body.getBoundingClientRect().top;
 
 		if (Math.abs(scrollPosition) > 1) {
@@ -30,6 +30,9 @@ import logo from "@assets/icons/logo.svg";
 			document.querySelector("#header")?.classList.remove("scrolled");
 		}
 	};
+
+	document.body.onscroll = () => updateHeader();
+	document.addEventListener("DOMContentLoaded", () => updateHeader());
 </script>
 
 <style>
