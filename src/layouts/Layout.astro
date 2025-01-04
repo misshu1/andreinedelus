@@ -19,7 +19,14 @@ const {title, description} = Astro.props;
 	<LayoutHead title={title} description={description} />
 	<body>
 		<div id="loading">
-			<Image src={logo} width="200" height="200" alt="Logo" />
+			<Image
+				src={logo}
+				width="200"
+				height="200"
+				alt="Logo"
+				loading="eager"
+				decoding="sync"
+			/>
 		</div>
 		<Header />
 		<slot />
