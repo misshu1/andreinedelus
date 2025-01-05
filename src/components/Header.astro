@@ -36,9 +36,14 @@ import logo from "@assets/icons/logo.svg";
 </script>
 
 <style>
+	#headerTitle {
+		transition: all 0.2s;
+	}
+
 	#headerTitle:before {
 		content: attr(data-content);
 	}
+
 	nav {
 		position: fixed;
 		top: 0;
@@ -48,7 +53,7 @@ import logo from "@assets/icons/logo.svg";
 		border-color: transparent;
 
 		&.scrolled {
-			background: rgba(0, 0, 0, 0.1);
+			background: rgba(22, 25, 46, 0.5);
 			backdrop-filter: blur(8px);
 			border-bottom: 1px solid var(--light_purple_100);
 			transition: all 0.5s;
