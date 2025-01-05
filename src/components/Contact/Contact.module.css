@@ -1,0 +1,32 @@
+.container {
+	width: 100%;
+}
+
+.form {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	height: 100%;
+	width: 100%;
+	max-width: 80rem;
+	margin: 0 auto;
+	padding: 2rem 1rem;
+}
+
+.inputContainer {
+	width: 100%;
+	max-width: 50rem;
+	margin: 0.5rem 0;
+}
+
+.title {
+	margin: 0;
+	padding: 1rem 0;
+	font-size: 2rem;
+	transition: all 0.2s;
+}
+
+.title:before {
+	content: attr(data-content);
+}

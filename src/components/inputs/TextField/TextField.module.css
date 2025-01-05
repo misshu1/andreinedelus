@@ -1,0 +1,67 @@
+.container {
+	display: flex;
+	flex-direction: column;
+}
+
+.textFieldContainer {
+	display: flex;
+	flex-direction: column;
+	background: var(--dark_blue_200);
+	border-radius: 5px;
+	padding: 0.5rem;
+}
+.textFieldContainer label {
+	font-size: 0.7rem;
+	opacity: 0.5;
+}
+
+.textFieldContainer input {
+	background: transparent;
+	border: none;
+	outline: none;
+	height: 25px;
+	color: var(--almost_white);
+	font-size: 1.1rem;
+}
+
+.textFieldContainer .textarea {
+	background: transparent;
+	border: none;
+	outline: none;
+	color: var(--almost_white);
+	font-size: 1.1rem;
+	display: block;
+	resize: vertical;
+	min-height: 8rem;
+	max-height: 15rem;
+}
+
+.error {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	margin-top: 0.5rem;
+	color: var(--red_100);
+	font-weight: 900;
+	font-size: 0.8rem;
+	min-width: 15px;
+}
+
+.textFieldContainer.valid {
+	box-shadow: 0 0 5px 0 var(--green_100);
+}
+
+.textFieldContainer:has(input:focus),
+.textFieldContainer:has(.textarea:focus) {
+	box-shadow: 0 0 5px 0 var(--light_blue_100);
+}
+
+.textFieldContainer.invalid {
+	box-shadow: 0 0 5px 0 var(--red_100);
+}
+
+.textFieldContainer.disabled > *,
+.container:has(.disabled) {
+	cursor: not-allowed;
+	filter: grayscale(1);
+}

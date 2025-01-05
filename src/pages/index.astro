@@ -3,10 +3,15 @@ import CompaniesLogos from "@components/CompaniesLogos.astro";
 import Layout from "@layouts/Layout.astro";
 import Showcase from "@components/Showcase.astro";
 import Projects from "@components/Projects.astro";
+import Contact from "@components/Contact/Contact";
+import {Icon} from "astro-icon/components";
 ---
 
 <Layout>
 	<Showcase />
 	<CompaniesLogos />
 	<Projects />
+	<Contact client:load>
+		<Icon name="ri:alert-line" width={15} height={15} />
+	</Contact>
 </Layout>

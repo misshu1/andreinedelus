@@ -7,7 +7,7 @@ import icon from 'astro-icon';
 export default defineConfig({
   integrations: [react(), icon({
     include: {
-        ri: ['github-fill','linkedin-box-fill'],
+        ri: ['github-fill', 'linkedin-box-fill', 'alert-line', 'checkbox-circle-line'],
     },
     iconDir: "src/assets/icons",
   })]

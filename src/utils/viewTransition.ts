@@ -86,9 +86,10 @@ export const handleViewTransitions = () => {
 	const headerTitle = document.getElementById("headerTitle");
 	const showcaseTitle = document.getElementById("showcaseTitle");
 	const projectsTitle = document.getElementById("projectsTitle");
+	const contactTitle = document.getElementById("contactTitle");
 
-	if (showcaseTitle && headerTitle && projectsTitle) {
-		const allElements = [showcaseTitle, projectsTitle];
+	if (showcaseTitle && headerTitle && projectsTitle && contactTitle) {
+		const allElements = [showcaseTitle, projectsTitle, contactTitle];
 
 		const showcaseTitleObserver = observer(
 			showcaseTitle,
@@ -100,7 +101,13 @@ export const handleViewTransitions = () => {
 			headerTitle,
 			allElements,
 		);
+		const contactTitleObserver = observer(
+			contactTitle,
+			headerTitle,
+			allElements,
+		);
 		showcaseTitleObserver.observe(showcaseTitle);
 		projectsTitleObserver.observe(projectsTitle);
+		contactTitleObserver.observe(contactTitle);
 	}
 };
