@@ -34,7 +34,8 @@ const {title, description} = Astro.props;
 	</body>
 </html>
 
-<script is:inline>
+<script>
+	import {handleViewTransitions} from "@utils/viewTransition";
 	const hideSpinnerWhenReady = async () => {
 		const loader = document.getElementById("loading");
 		const results = await Promise.allSettled([
@@ -43,7 +44,7 @@ const {title, description} = Astro.props;
 					document.readyState === "complete" ||
 					document.readyState === "interactive"
 				) {
-					resolve();
+					resolve(null);
 				} else {
 					document.addEventListener("DOMContentLoaded", resolve);
 				}
@@ -62,9 +63,10 @@ const {title, description} = Astro.props;
 			// If some error happend when loading the page hide the loader
 			if (loader) loader.classList.add("hidden");
 		}
-		loader.addEventListener("animationend", () => {
+		loader?.addEventListener("animationend", () => {
 			// Hide loader when animation ended
 			loader.style.display = "none";
+			handleViewTransitions();
 		});
 	};
 
@@ -102,7 +104,7 @@ const {title, description} = Astro.props;
 		}
 	}
 	#loading {
-		position: absolute;
+		position: fixed;
 		inset: 0;
 		z-index: var(--zIndex_loader);
 		display: flex;

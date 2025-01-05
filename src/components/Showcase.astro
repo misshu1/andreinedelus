@@ -1,6 +1,7 @@
 <section class="container">
 	<div class="showcaseContainer">
-		<h2 class="header">Andrei Nedelus</h2>
+		<h2 id="showcaseTitle" class="header" data-content="Andrei Nedelus">
+		</h2>
 		<h3 class="subHeader">Senior FrontEnd Engineer</h3>
 		<p class="text">
 			I'm a Freelance FrontEnd Developer, experienced in creating modern
@@ -10,6 +11,9 @@
 </section>
 
 <style>
+	#showcaseTitle:before {
+		content: attr(data-content);
+	}
 	.container {
 		height: 35rem;
 		position: relative;

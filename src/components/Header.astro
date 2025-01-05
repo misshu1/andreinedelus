@@ -15,7 +15,7 @@ import logo from "@assets/icons/logo.svg";
 				loading="eager"
 				decoding="sync"
 			/>
-			<span>Andrei Nedelus</span>
+			<span id="headerTitle" data-content=""></span>
 		</a>
 	</div>
 </nav>
@@ -36,6 +36,9 @@ import logo from "@assets/icons/logo.svg";
 </script>
 
 <style>
+	#headerTitle:before {
+		content: attr(data-content);
+	}
 	nav {
 		position: fixed;
 		top: 0;
