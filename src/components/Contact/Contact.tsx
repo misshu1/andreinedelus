@@ -2,15 +2,16 @@ import type {FC, JSX} from "react";
 import {Controller, useForm, type SubmitHandler} from "react-hook-form";
 import styles from "./Contact.module.css";
 import {zodResolver} from "@hookform/resolvers/zod";
+import classNames from "classnames";
 import {
 	defaultValues,
 	validationSchema,
 	type ValidationSchema,
 } from "./validation-schema";
 import TextField from "@components/inputs/TextField/TextField";
-import classNames from "classnames";
 import {encodeFormValues} from "@utils/utils";
 import {useNotifications} from "@components/notifications/useNotifications";
+import Button from "@components/button/Button";
 
 type ContactProps = {
 	children: JSX.Element;
@@ -152,13 +153,15 @@ const Contact: FC<ContactProps> = ({children}) => {
 						)}
 					/>
 				</div>
-				<button
-					type="submit"
-					aria-label="send message"
-					disabled={!isValid || isSubmitting}
-				>
-					Send Message
-				</button>
+				<div className={styles.buttonsContainer}>
+					<Button
+						type="submit"
+						aria-label="send message"
+						disabled={!isValid || isSubmitting}
+					>
+						Send Message
+					</Button>
+				</div>
 			</form>
 		</section>
 	);

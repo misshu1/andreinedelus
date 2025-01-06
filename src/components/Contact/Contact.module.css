@@ -20,6 +20,16 @@
 	margin: 0.5rem 0;
 }
 
+.buttonsContainer {
+	width: 100%;
+	max-width: 50rem;
+	margin: 0.5rem 0;
+}
+
+.buttonsContainer button {
+	width: 100%;
+}
+
 .title {
 	margin: 0;
 	padding: 1rem 0;
