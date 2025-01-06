@@ -10,15 +10,18 @@ import {
 import TextField from "@components/inputs/TextField/TextField";
 import classNames from "classnames";
 import {encodeFormValues} from "@utils/utils";
+import {useNotifications} from "@components/notifications/useNotifications";
 
 type ContactProps = {
 	children: JSX.Element;
 };
 
 const Contact: FC<ContactProps> = ({children}) => {
+	const {showSuccess, showError} = useNotifications();
 	const {
 		control,
 		handleSubmit,
+		reset,
 		formState: {errors, isValid, isSubmitting},
 	} = useForm<ValidationSchema>({
 		defaultValues: defaultValues,
@@ -43,8 +46,17 @@ const Contact: FC<ContactProps> = ({children}) => {
 					message,
 				}),
 			})
-				.then(() => console.log("success"))
-				.catch(error => alert(error));
+				.then(() => {
+					showSuccess("Success", "Your message has been sent.");
+					reset();
+				})
+				.catch(() =>
+					showError(
+						"Error",
+						"Failed to send the message. Please try again.",
+						500,
+					),
+				);
 		}
 	};
 

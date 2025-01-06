@@ -5,6 +5,7 @@ import logo from "@assets/icons/logo.svg";
 import LayoutHead from "./LayoutHead.astro";
 import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
+import Notifications from "@components/notifications/Notifications";
 
 type Props = {
 	title?: string;
@@ -30,6 +31,7 @@ const {title, description} = Astro.props;
 		</div>
 		<Header />
 		<slot />
+		<Notifications client:load />
 		<Footer />
 	</body>
 </html>
@@ -119,5 +121,9 @@ const {title, description} = Astro.props;
 
 	#loading.hidden {
 		animation: 0.5s forwards fade;
+	}
+	#notificationsContainer {
+		position: relative;
+		z-index: var(--zIndex_notification);
 	}
 </style>

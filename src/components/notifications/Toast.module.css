@@ -1,0 +1,58 @@
+.toast {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	color: var(--white);
+}
+
+.success svg,
+.info svg,
+.warning svg,
+.error svg {
+	fill: var(--white);
+}
+
+.success button,
+.info button,
+.warning button,
+.error button {
+	opacity: 1;
+	transform: scale(1.2);
+	padding: 0.2rem 0.2rem 0 0;
+}
+
+.toast h3 {
+	display: flex;
+	align-items: center;
+	margin: 0;
+}
+
+.message {
+	line-height: 1.4;
+}
+
+.toast p {
+	margin: 0.5rem 0;
+	word-break: break-all;
+	word-break: break-word;
+}
+
+.success {
+	background: #43a047;
+}
+
+.info {
+	background: #2979ff;
+}
+
+.warning {
+	background: #ffa000;
+}
+
+.error {
+	background: #d32f2f;
+}
+
+.code {
+	font-weight: 900;
+}
