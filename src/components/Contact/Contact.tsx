@@ -9,6 +9,7 @@ import {
 } from "./validation-schema";
 import TextField from "@components/inputs/TextField/TextField";
 import classNames from "classnames";
+import {encodeFormValues} from "@utils/utils";
 
 type ContactProps = {
 	children: JSX.Element;
@@ -26,9 +27,24 @@ const Contact: FC<ContactProps> = ({children}) => {
 		reValidateMode: "onBlur",
 	});
 
-	const onSubmit: SubmitHandler<ValidationSchema> = data => {
+	const onSubmit: SubmitHandler<ValidationSchema> = ({
+		email,
+		message,
+		name,
+	}) => {
 		if (Object.keys(errors).length === 0) {
-			console.log(data, errors);
+			fetch("/", {
+				method: "POST",
+				headers: {"Content-Type": "application/x-www-form-urlencoded"},
+				body: encodeFormValues({
+					"form-name": "contact",
+					name,
+					email,
+					message,
+				}),
+			})
+				.then(() => console.log("success"))
+				.catch(error => alert(error));
 		}
 	};
 
@@ -37,12 +53,27 @@ const Contact: FC<ContactProps> = ({children}) => {
 			<form
 				className={classNames(styles.form)}
 				onSubmit={handleSubmit(onSubmit)}
+				data-netlify="true"
+				netlify-honeypot="bot-field"
+				name="contact"
+				method="post"
 			>
-				<h2
-					id="contactTitle"
-					className={classNames(styles.title)}
-					data-content="Contact"
-				></h2>
+				<input style={{display: "none"}} name="bot-field" />
+				<div className={classNames(styles.textContainer)}>
+					<h2
+						id="contactTitle"
+						className={classNames(styles.title)}
+						data-content="Contact"
+					></h2>
+					<p className={classNames(styles.contactInfoText)}>
+						I'm here to build your next project, send me a message.
+					</p>
+					<p className={classNames(styles.contactInfoText)}>
+						You can contact me at
+						<strong> nedelusandrei[at]gmail.com </strong>or use the
+						contact form below.
+					</p>
+				</div>
 				<div className={styles.inputContainer}>
 					<Controller
 						name="name"
@@ -58,6 +89,7 @@ const Contact: FC<ContactProps> = ({children}) => {
 								isValid={!invalid && isDirty}
 								error={error?.message}
 								label="Name"
+								placeholder="John Doe"
 							>
 								{children}
 							</TextField>
@@ -79,6 +111,7 @@ const Contact: FC<ContactProps> = ({children}) => {
 								isValid={!invalid && isDirty}
 								error={error?.message}
 								label="Email"
+								placeholder="johndoe@example.com"
 							>
 								{children}
 							</TextField>
@@ -100,6 +133,7 @@ const Contact: FC<ContactProps> = ({children}) => {
 								isValid={!invalid && isDirty}
 								error={error?.message}
 								label="Message"
+								placeholder="Your message."
 							>
 								{children}
 							</TextField>

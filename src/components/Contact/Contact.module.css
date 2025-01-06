@@ -30,3 +30,16 @@
 .title:before {
 	content: attr(data-content);
 }
+
+.textContainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	margin-bottom: 2rem;
+}
+
+.contactInfoText {
+	margin: 0;
+	line-height: 1.5rem;
+}
