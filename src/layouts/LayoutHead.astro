@@ -37,7 +37,27 @@ const image = getThumbnail(title, description);
 		sizes="16x16 24x24 32x32 64x64"
 		href="/favicons/favicon.ico"
 	/>
-	<meta name="language" content="English" />
+	<link rel="apple-touch-icon" href="favicons/icon-192x192.png" />
+	<link
+		rel="apple-touch-icon"
+		type="image/png"
+		sizes="72x72"
+		href="favicons/icon-192x192.png"
+	/>
+
+	<link
+		rel="apple-touch-icon"
+		type="image/png"
+		sizes="114x114"
+		href="favicons/icon-192x192.png"
+	/>
+	<link
+		rel="apple-touch-icon"
+		type="image/png"
+		href="favicons/icon-192x192.png"
+	/>
+	<meta name="language" content="en" />
+	<meta http-equiv="content-language" content="en-us" />
 	<meta name="author" content="Andrei Nedelus" />
 	<meta name="generator" content={Astro.generator} />
 	<meta
@@ -52,11 +72,12 @@ const image = getThumbnail(title, description);
 		content="senior, react, typescript, javascript, developer, contractor, freelancer, portfolio"
 	/>
 	<title>{title}</title>
-	<meta property="og:type" content="website" />
+	<meta property="og:type" content="profile" />
 	<meta property="og:url" content={Astro.url} />
 	<meta property="og:title" content={title} />
 	<meta property="og:description" content={description} />
 	<meta property="og:image" content={image} />
+	<meta property="og:image:secure_url" content={image} />
 	<meta property="twitter:card" content="summary_large_image" />
 	<meta property="twitter:url" content={Astro.url} />
 	<meta property="twitter:title" content={title} />
