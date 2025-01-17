@@ -25,7 +25,7 @@ const Button: FC<Props> = ({
 			onClick={onClick}
 			type={type}
 		>
-			{children}
+			<span className={classNames(styles.btnText)}>{children}</span>
 		</button>
 	);
 };

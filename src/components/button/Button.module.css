@@ -26,6 +26,10 @@
 	cursor: not-allowed;
 }
 
+.disabled .btnText {
+	opacity: 0.5;
+}
+
 .disabled.button:hover {
 	background-color: var(--light_blue_100);
 }

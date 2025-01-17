@@ -37,7 +37,7 @@ const {title, description} = Astro.props;
 </html>
 
 <script>
-	import {handleViewTransitions} from "@utils/viewTransition";
+	import {renderHeaderText} from "@utils/header";
 	const hideSpinnerWhenReady = async () => {
 		const loader = document.getElementById("loading");
 		const results = await Promise.allSettled([
@@ -68,7 +68,7 @@ const {title, description} = Astro.props;
 		loader?.addEventListener("animationend", () => {
 			// Hide loader when animation ended
 			loader.style.display = "none";
-			handleViewTransitions();
+			renderHeaderText();
 		});
 	};
 

@@ -37,10 +37,6 @@
 	transition: all 0.2s;
 }
 
-.title:before {
-	content: attr(data-content);
-}
-
 .textContainer {
 	display: flex;
 	justify-content: center;

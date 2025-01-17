@@ -77,7 +77,9 @@ const Contact: FC<ContactProps> = ({children}) => {
 						id="contactTitle"
 						className={classNames(styles.title)}
 						data-content="Contact"
-					></h2>
+					>
+						Contact
+					</h2>
 					<p className={classNames(styles.contactInfoText)}>
 						I'm here to build your next project, send me a message.
 					</p>
