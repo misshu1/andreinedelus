@@ -1,0 +1,126 @@
+---
+import {getCollection} from "astro:content";
+import Tag from "./Tag.astro";
+import ExperienceContent from "./ExperienceContent.astro";
+
+const experiences = await getCollection("experience");
+---
+
+<section>
+	<div class="experiencesContainer">
+		<h2 id="experienceTitle" data-content="Experience">Experience</h2>
+		<ul class="experiencesList">
+			{
+				experiences
+					.sort((a, b) => b.data.order - a.data.order)
+					.map(experience => {
+						const {
+							data: {company, dateRange, jobTitle, tags, url},
+						} = experience;
+
+						return (
+							<li class="experience">
+								<div class="dateRange" aria-label={dateRange}>
+									{dateRange}
+								</div>
+								<div class="details">
+									<a class="title" href={url} target="_blank">
+										<h3>
+											{jobTitle} · {company}
+										</h3>
+									</a>
+									<ExperienceContent
+										experience={experience}
+									/>
+									<div class="tagsContainer">
+										{tags.map(item => (
+											<Tag text={item}>{item}</Tag>
+										))}
+									</div>
+								</div>
+							</li>
+						);
+					})
+			}
+		</ul>
+	</div>
+</section>
+
+<style>
+	section {
+		width: 100%;
+	}
+
+	#experienceTitle {
+		transition: all 0.2s;
+		margin: 0;
+		padding: 1rem 0;
+		font-size: 2rem;
+	}
+
+	.title {
+		display: inline-block;
+		color: var(--white);
+
+		h3 {
+			margin: 0;
+		}
+	}
+
+	.title:hover {
+		color: var(--light_blue_200);
+	}
+
+	.experiencesContainer {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		max-width: 80rem;
+		width: 100%;
+		margin: 0 auto;
+		padding: 6rem 1rem 0 1rem;
+	}
+
+	.experiencesList {
+		display: grid;
+		gap: 4.5rem;
+		padding: 0;
+		margin-top: 3rem;
+	}
+
+	.experience {
+		display: grid;
+		grid-template-columns: minmax(13rem, 1fr) 8fr;
+		gap: 1rem;
+		position: relative;
+	}
+
+	.experience:hover::after {
+		content: "";
+		position: absolute;
+		inset: -2rem -1rem;
+		z-index: var(--zIndex_behind_1);
+		background-color: rgba(30, 41, 59, 0.5);
+		background-color: var(--light_blue_100_transparent_10);
+		border-radius: 1rem;
+		overflow: hidden;
+	}
+
+	.dateRange {
+		white-space: nowrap;
+		opacity: 0.6;
+	}
+
+	.tagsContainer {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+	}
+
+	@media (max-width: 600px) {
+		.experience {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

@@ -1,0 +1,11 @@
+---
+import {render, type CollectionEntry} from "astro:content";
+interface Props {
+	experience: CollectionEntry<"experience">;
+}
+
+const {experience} = Astro.props;
+const {Content} = await render(experience);
+---
+
+<Content />
