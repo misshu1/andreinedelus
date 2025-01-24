@@ -80,10 +80,10 @@ const Contact: FC<ContactProps> = ({children}) => {
 					>
 						Contact
 					</h2>
-					<p className={classNames(styles.contactInfoText)}>
+					<p>
 						I'm here to build your next project, send me a message.
 					</p>
-					<p className={classNames(styles.contactInfoText)}>
+					<p>
 						You can contact me at
 						<strong> nedelusandrei[at]gmail.com </strong>or use the
 						contact form below.
