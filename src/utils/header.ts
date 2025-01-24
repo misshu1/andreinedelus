@@ -3,6 +3,8 @@ const observer = (
 	headerElement: HTMLElement,
 	allElements: HTMLElement[],
 ): IntersectionObserver => {
+	let prevScrollPosition = window.scrollY;
+
 	return new IntersectionObserver(
 		entries => {
 			const headerTitle = document.getElementById("headerTitle");
@@ -17,17 +19,25 @@ const observer = (
 			);
 			const currentTitle =
 				elements.find(
-					({bottom}) => Math.abs(bottom) === largestNegative,
+					({bottom}) =>
+						bottom <= 0 && Math.abs(bottom) === largestNegative,
 				)?.name ?? "";
 
 			if (entries[0].boundingClientRect.bottom < 120) {
+				// Update the header title when target element it's close to the header
 				headerElement.setAttribute(
 					"data-content",
 					element?.getAttribute("data-content") ?? "",
 				);
-			} else if (headerTitle?.getAttribute("data-content")) {
+			} else if (
+				prevScrollPosition >= window.scrollY &&
+				headerTitle?.getAttribute("data-content")
+			) {
+				// Update the header title when scrolling UP
 				headerElement.setAttribute("data-content", currentTitle);
 			}
+
+			prevScrollPosition = window.scrollY;
 		},
 		{rootMargin: "-120px"},
 	);

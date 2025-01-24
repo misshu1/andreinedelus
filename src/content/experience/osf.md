@@ -13,4 +13,4 @@ tags:
     - SCSS
 ---
 
-Lorem ipsum dolor, sit amet consectetur adipisicing elit. Incidunt, enim sint. Sint hic quis iusto eveniet, voluptas voluptatem sit? Beatae debitis eveniet dicta? Eaque obcaecati, tenetur sapiente temporibus velit veritatis.
+Implemented a comprehensive company listing website, enabling marketers to streamline research processes and gain actionable insights for strategic decision-making and competitive analysis. Delivered a scalable, user-friendly solution by leveraging advanced React practices and modern web development standards.

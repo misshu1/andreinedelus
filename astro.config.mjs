@@ -10,7 +10,7 @@ export default defineConfig({
     site:'https://andreinedelus.com',
     integrations: [react(), icon({
         include: {
-            ri: ['github-fill', 'linkedin-box-fill', 'alert-line','checkbox-circle-line'],
+            ri: ['github-fill', 'linkedin-box-fill', 'alert-line','checkbox-circle-line', 'external-link-line'],
         },
         iconDir: "src/assets/icons",
     }), sitemap()],

@@ -2,6 +2,7 @@
 import {getCollection} from "astro:content";
 import Tag from "./Tag.astro";
 import ExperienceContent from "./ExperienceContent.astro";
+import {Icon} from "astro-icon/components";
 
 const experiences = await getCollection("experience");
 ---
@@ -24,9 +25,19 @@ const experiences = await getCollection("experience");
 									{dateRange}
 								</div>
 								<div class="details">
-									<a class="title" href={url} target="_blank">
+									<a
+										class="link title"
+										href={url}
+										target="_blank"
+									>
 										<h3>
 											{jobTitle} · {company}
+											<Icon
+												title={`${jobTitle} · ${company}`}
+												name="ri:external-link-line"
+												width={20}
+												height={20}
+											/>
 										</h3>
 									</a>
 									<ExperienceContent
@@ -60,15 +71,21 @@ const experiences = await getCollection("experience");
 
 	.title {
 		display: inline-block;
-		color: var(--white);
 
 		h3 {
 			margin: 0;
 		}
+
+		svg {
+			display: inline-block;
+			vertical-align: middle;
+			transform: scale(0.8);
+			transition: transform 0.1s;
+		}
 	}
 
-	.title:hover {
-		color: var(--light_blue_200);
+	.title:hover svg {
+		transform: scale(1) translate3d(0.125rem, -0.125rem, 0);
 	}
 
 	.experiencesContainer {
@@ -94,17 +111,7 @@ const experiences = await getCollection("experience");
 		grid-template-columns: minmax(13rem, 1fr) 8fr;
 		gap: 1rem;
 		position: relative;
-	}
-
-	.experience:hover::after {
-		content: "";
-		position: absolute;
-		inset: -2rem -1rem;
-		z-index: var(--zIndex_behind_1);
-		background-color: rgba(30, 41, 59, 0.5);
-		background-color: var(--light_blue_100_transparent_10);
-		border-radius: 1rem;
-		overflow: hidden;
+		transition: all 0.15s;
 	}
 
 	.dateRange {
@@ -121,6 +128,24 @@ const experiences = await getCollection("experience");
 	@media (max-width: 600px) {
 		.experience {
 			grid-template-columns: 1fr;
+		}
+	}
+
+	@media (min-width: 600px) {
+		.experience:hover::after {
+			content: "";
+			position: absolute;
+			inset: -2rem -1rem;
+			z-index: var(--zIndex_behind_1);
+			background-color: rgba(30, 41, 59, 0.5);
+			background-color: var(--light_blue_100_transparent_10);
+			border-radius: 1rem;
+			overflow: hidden;
+		}
+
+		.experiencesList:hover .experience:not(:hover) {
+			opacity: 0.4;
+			filter: grayscale(0.6);
 		}
 	}
 </style>

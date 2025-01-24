@@ -4,7 +4,7 @@ company: Betfair Romania Development
 jobTitle: Senior React Developer
 url: https://www.betfairromania.ro/
 isVisible: true
-order: 4
+order: 5
 tags:
     - React
     - Redux

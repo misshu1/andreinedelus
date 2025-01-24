@@ -4,7 +4,7 @@ company: Quick Suite Trading
 jobTitle: Senior Angular Developer
 url: https://quicksuitetrading.com/
 isVisible: true
-order: 3
+order: 4
 tags:
     - Angular
     - Angular Material
@@ -15,4 +15,6 @@ tags:
     - WebSocket
 ---
 
-Lorem ipsum dolor, sit amet consectetur adipisicing elit. Incidunt, enim sint. Sint hic quis iusto eveniet, voluptas voluptatem sit? Beatae debitis eveniet dicta? Eaque obcaecati, tenetur sapiente temporibus velit veritatis.
+**QST Hub** - Created an online platform where traders can connect and share trading ideas and resources. This includes a message board for sharing charts and algorithms, making it easier for traders to collaborate and stay informed about market news and trends.
+
+**QST Web** - Developed advanced trading solutions by creating a real-time web trading platform, enhancing market access and trade execution for multiple global firms, significantly boosting operational efficiency.
