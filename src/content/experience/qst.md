@@ -2,7 +2,7 @@
 dateRange: Sep 2019 - Present
 company: Quick Suite Trading
 jobTitle: Senior Angular Developer
-url: https://quicksuitetrading.com/
+url: https://qst.global/
 isVisible: true
 order: 4
 tags:

@@ -65,6 +65,7 @@ const yearsOfExperience = (dateRange: string) => {
 					.map(experience => {
 						const {
 							data: {company, dateRange, jobTitle, tags, url},
+							slug,
 						} = experience;
 
 						return (
@@ -75,6 +76,7 @@ const yearsOfExperience = (dateRange: string) => {
 								</div>
 								<div class="details">
 									<a
+										id={slug}
 										class="link title"
 										href={url}
 										target="_blank"
@@ -119,6 +121,7 @@ const yearsOfExperience = (dateRange: string) => {
 
 	.title {
 		display: inline-block;
+		scroll-margin-top: calc(60px + 2.5rem);
 
 		svg {
 			display: inline-block;

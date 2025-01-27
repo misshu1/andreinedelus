@@ -9,6 +9,7 @@ type Logo = {
 	img: ImageMetadata;
 	height: number;
 	alt: string;
+	id: string;
 };
 
 const logos: Logo[] = [
@@ -16,15 +17,27 @@ const logos: Logo[] = [
 		img: betfairLogo,
 		height: 40,
 		alt: "Betfair Romania Development Logo",
+		id: "betfair",
 	},
-	{img: bytexLogo, height: 50, alt: "Bytex Logo"},
-	{img: osfLogo, height: 30, alt: "OSF Digital Logo"},
+	{img: bytexLogo, height: 50, alt: "Bytex Logo", id: "bytex"},
+	{
+		img: osfLogo,
+		height: 30,
+		alt: "OSF Digital Logo",
+		id: "osf",
+	},
 	{
 		img: sdaLogo,
 		height: 50,
 		alt: "Software Development Academy Logo",
+		id: "sda",
 	},
-	{img: qstLogo, height: 50, alt: "Quick Suite Trading Logo"},
+	{
+		img: qstLogo,
+		height: 50,
+		alt: "Quick Suite Trading Logo",
+		id: "qst",
+	},
 ];
 ---
 
@@ -35,15 +48,17 @@ const logos: Logo[] = [
 				.fill(null)
 				.map(() => (
 					<div class="imagesContainer">
-						{logos.map(({alt, height, img}) => (
-							<Image
-								class="img"
-								src={img}
-								height={height}
-								alt={alt}
-								loading="eager"
-								decoding="sync"
-							/>
+						{logos.map(({alt, height, img, id}) => (
+							<a href={`#${id}`}>
+								<Image
+									class="img"
+									src={img}
+									height={height}
+									alt={alt}
+									loading="eager"
+									decoding="sync"
+								/>
+							</a>
 						))}
 					</div>
 				))
@@ -109,6 +124,10 @@ const logos: Logo[] = [
 		align-items: center;
 		flex-wrap: nowrap;
 		animation: slide 20s linear infinite;
+
+		a:focus {
+			box-shadow: none;
+		}
 	}
 
 	@keyframes slide {
