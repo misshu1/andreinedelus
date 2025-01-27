@@ -121,7 +121,7 @@ const yearsOfExperience = (dateRange: string) => {
 
 	.title {
 		display: inline-block;
-		scroll-margin-top: calc(60px + 2.5rem);
+		scroll-margin-top: calc(60px + 4rem);
 
 		svg {
 			display: inline-block;
@@ -188,7 +188,8 @@ const yearsOfExperience = (dateRange: string) => {
 	}
 
 	@media (min-width: 600px) {
-		.experience:hover::after {
+		.experience:hover::after,
+		.experience:focus-within::after {
 			content: "";
 			position: absolute;
 			inset: -2rem -1rem;
@@ -199,7 +200,7 @@ const yearsOfExperience = (dateRange: string) => {
 			overflow: hidden;
 		}
 
-		.experiencesList:hover .experience:not(:hover) {
+		.experiencesList:hover .experience:not(:hover):not(:focus-within) {
 			opacity: 0.4;
 			filter: grayscale(0.6);
 		}
