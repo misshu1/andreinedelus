@@ -1,3 +1,8 @@
+---
+import {Icon} from "astro-icon/components";
+import {EXTERNAL_URL} from "@utils/url";
+---
+
 <section class="container">
 	<div class="showcaseContainer">
 		<h1 id="showcaseTitle" class="header" data-content="Andrei Nedelus">
@@ -8,6 +13,32 @@
 			I'm a Freelance FrontEnd Developer, experienced in creating modern
 			web applications and delivering high-quality, innovative solutions.
 		</p>
+		<div class="iconsContainer">
+			<a href={EXTERNAL_URL.GITHUB} class="icon" target="_blank">
+				<Icon
+					title={EXTERNAL_URL.GITHUB}
+					name="ri:github-fill"
+					width={30}
+					height={30}
+				/>
+			</a>
+			<a href={EXTERNAL_URL.LINKEDIN} class="icon" target="_blank">
+				<Icon
+					title={EXTERNAL_URL.LINKEDIN}
+					name="ri:linkedin-box-fill"
+					width={30}
+					height={30}
+				/>
+			</a>
+			<a href={EXTERNAL_URL.INSTAGRAM} class="icon" target="_blank">
+				<Icon
+					title={EXTERNAL_URL.INSTAGRAM}
+					name="ri:instagram-line"
+					width={30}
+					height={30}
+				/>
+			</a>
+		</div>
 	</div>
 </section>
 
@@ -107,6 +138,25 @@
 		padding: 0 1rem;
 		text-align: center;
 		line-height: 1.5rem;
+	}
+
+	.iconsContainer {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 1rem;
+		margin-top: 1rem;
+	}
+
+	.iconsContainer .icon,
+	.logo {
+		color: currentColor;
+		text-decoration: none;
+	}
+
+	.iconsContainer .icon:hover {
+		color: var(--light_blue_100);
+		transition: 0.2s;
 	}
 
 	@media only screen and (max-width: 550px) {

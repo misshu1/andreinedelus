@@ -49,7 +49,7 @@ const logos: Logo[] = [
 				.map(() => (
 					<div class="imagesContainer">
 						{logos.map(({alt, height, img, id}) => (
-							<a href={`#${id}`}>
+							<a href={`#${id}`} tabindex="-1">
 								<Image
 									class="img"
 									src={img}

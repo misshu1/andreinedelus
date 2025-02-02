@@ -40,6 +40,11 @@ body {
 	color: var(--almost_white);
 }
 
+*::selection {
+	color: var(--white);
+	background: var(--light_blue_200);
+}
+
 a {
 	color: var(--light_blue_200);
 	text-decoration: none;
