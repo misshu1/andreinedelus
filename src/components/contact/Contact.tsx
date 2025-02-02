@@ -160,9 +160,8 @@ const Contact: FC<ContactProps> = ({children}) => {
 						type="submit"
 						aria-label="send message"
 						disabled={!isValid || isSubmitting}
-					>
-						Send Message
-					</Button>
+						title="Send Message"
+					/>
 				</div>
 			</form>
 		</section>
