@@ -38,41 +38,17 @@ const {title, description} = Astro.props;
 
 <script>
 	import {renderHeaderText} from "@utils/header";
-	const hideSpinnerWhenReady = async () => {
-		const loader = document.getElementById("loading");
-		const results = await Promise.allSettled([
-			new Promise(resolve => {
-				if (
-					document.readyState === "complete" ||
-					document.readyState === "interactive"
-				) {
-					resolve(null);
-				} else {
-					document.addEventListener("DOMContentLoaded", resolve);
-				}
-			}),
-			document.fonts.ready,
-		]);
+	import {onContentLoaded} from "@utils/utils";
 
-		const allSuccessful = results.every(
-			result => result.status === "fulfilled",
-		);
-
-		if (allSuccessful && loader) {
-			// Start fade animation after content loaded and fonts loaded
-			loader.classList.add("hidden");
-		} else {
-			// If some error happend when loading the page hide the loader
-			if (loader) loader.classList.add("hidden");
-		}
-		loader?.addEventListener("animationend", () => {
-			// Hide loader when animation ended
+	const loader = document.getElementById("loading");
+	if (loader) {
+		const onLoad = () => {
 			loader.style.display = "none";
 			renderHeaderText();
-		});
-	};
+		};
 
-	hideSpinnerWhenReady();
+		onContentLoaded(loader, "hidden", onLoad);
+	}
 </script>
 
 <style>

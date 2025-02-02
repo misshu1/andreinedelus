@@ -1,0 +1,67 @@
+---
+import "modern-normalize/modern-normalize.css";
+
+type Props = {
+	title: string;
+};
+
+const {title} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<style is:global>
+			@import "../styles/global.css";
+		</style>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link rel="sitemap" href="/sitemap-index.xml" />
+		<link
+			rel="preload"
+			as="style"
+			href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			rel="icon"
+			type="image/x-icon"
+			sizes="16x16 24x24 32x32 64x64"
+			href="/favicons/favicon.ico"
+		/>
+		<link rel="apple-touch-icon" href="favicons/icon-192x192.png" />
+		<link
+			rel="apple-touch-icon"
+			type="image/png"
+			sizes="72x72"
+			href="favicons/icon-192x192.png"
+		/>
+		<link
+			rel="apple-touch-icon"
+			type="image/png"
+			sizes="114x114"
+			href="favicons/icon-192x192.png"
+		/>
+		<link
+			rel="apple-touch-icon"
+			type="image/png"
+			href="favicons/icon-192x192.png"
+		/>
+		<meta name="language" content="en" />
+		<meta http-equiv="content-language" content="en" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, shrink-to-fit=no"
+		/>
+		<meta name="theme-color" content="#16192e" />
+		<link rel="canonical" href={Astro.url} />
+		<title>{title}</title>
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>

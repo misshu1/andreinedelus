@@ -1,0 +1,108 @@
+---
+import Button from "@components/button/Button";
+import BasicLayout from "@layouts/BasicLayout.astro";
+import {Icon} from "astro-icon/components";
+
+const title = "Page not found · Andrei Nedelus";
+---
+
+<BasicLayout title={title}>
+	<section>
+		<div id="content" class="content">
+			<h1 class="errorCode">404</h1>
+			<h3 class="errorTitle">Sorry!</h3>
+			<p class="errorMessage">
+				The page you're looking for does not exist.
+			</p>
+			<Button id="home" title="Home" size="large" client:visible>
+				<Icon
+					title="home"
+					name="ri:home-4-fill"
+					width={20}
+					height={20}
+				/>
+			</Button>
+		</div>
+	</section>
+</BasicLayout>
+
+<script>
+	import {navigate} from "astro:transitions/client";
+
+	const homeButton = document.getElementById("home");
+	homeButton?.addEventListener("click", () => navigate("/"));
+</script>
+
+<style>
+	:root {
+		font-size: 14px;
+	}
+
+	section {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 100%;
+		width: 100%;
+		background: rgba(0, 0, 0, 0.13);
+		backdrop-filter: blur(10px);
+	}
+
+	.content {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		color: var(--almost_white);
+		background-color: var(--dark_blue_100);
+		padding: 0.5rem;
+		width: 100%;
+		height: 100%;
+		transform: scale(0.7);
+		animation: animate 0.2s ease-out forwards;
+	}
+
+	.errorCode {
+		letter-spacing: 5px;
+		font-size: 6rem;
+		margin: 0;
+	}
+
+	.errorTitle,
+	.errorMessage {
+		padding: 1rem 0;
+	}
+
+	@keyframes animate {
+		0% {
+			opacity: 0;
+			transform: scale(0.7);
+		}
+
+		70% {
+			transform: scale(1.05);
+		}
+
+		100% {
+			opacity: 1;
+			transform: scale(1);
+		}
+	}
+
+	@media only screen and (min-width: 450px) {
+		.content {
+			width: 25rem;
+			border-radius: 0.5em;
+			box-shadow:
+				rgba(0, 0, 0, 0.2) 0px 0px 5px -1px,
+				rgba(0, 0, 0, 0.14) 0px 0px 6px 0px,
+				rgba(0, 0, 0, 0.12) 0px 0px 12px 0px;
+		}
+	}
+
+	@media only screen and (min-height: 600px) and (min-width: 450px) {
+		.content {
+			height: 40rem;
+		}
+	}
+</style>

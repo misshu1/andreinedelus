@@ -6,3 +6,40 @@ export const encodeFormValues = (data: Record<string, string>) => {
 		)
 		.join("&");
 };
+
+export const onContentLoaded = async (
+	element: HTMLElement,
+	className: string,
+	calback?: () => void,
+) => {
+	const results = await Promise.allSettled([
+		new Promise(resolve => {
+			if (
+				document.readyState === "complete" ||
+				document.readyState === "interactive"
+			) {
+				resolve(null);
+			} else {
+				document.addEventListener("DOMContentLoaded", resolve);
+			}
+		}),
+		document.fonts.ready,
+	]);
+
+	const allSuccessful = results.every(
+		result => result.status === "fulfilled",
+	);
+
+	if (allSuccessful && element) {
+		// Start fade animation after content loaded and fonts loaded
+		element.classList.add(className);
+	} else {
+		// If some error happend when loading the page hide the element
+		if (element) element.classList.add(className);
+	}
+	element?.addEventListener("animationend", () => {
+		// Remove className when animation ended
+		element.classList.remove(className);
+		calback && calback();
+	});
+};

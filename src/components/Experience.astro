@@ -181,13 +181,13 @@ const yearsOfExperience = (dateRange: string) => {
 		gap: 0.5rem;
 	}
 
-	@media (max-width: 600px) {
+	@media only screen and (max-width: 600px) {
 		.experience {
 			grid-template-columns: 1fr;
 		}
 	}
 
-	@media (min-width: 600px) {
+	@media only screen and (min-width: 600px) {
 		.experience:hover::after,
 		.experience:focus-within::after {
 			content: "";
