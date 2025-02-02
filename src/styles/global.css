@@ -70,3 +70,50 @@ h5,
 h6 {
 	margin: 0;
 }
+
+@keyframes animateGlobalLoading {
+	0% {
+		transform: scale(1);
+	}
+	25% {
+		transform: scale(1.05);
+	}
+	50% {
+		transform: scale(1);
+	}
+	75% {
+		transform: scale(1.05);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
+@keyframes fadeGlobalLoading {
+	0% {
+		opacity: 1;
+	}
+	70% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+#globalLoading {
+	position: fixed;
+	inset: 0;
+	z-index: var(--zIndex_loader);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: inherit;
+}
+#globalLoading img {
+	position: absolute;
+	animation: 2s infinite animateGlobalLoading;
+}
+
+#globalLoading.hidden {
+	animation: 0.5s forwards fadeGlobalLoading;
+}

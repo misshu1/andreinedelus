@@ -1,5 +1,7 @@
 ---
+import Image from "astro/components/Image.astro";
 import "modern-normalize/modern-normalize.css";
+import logo from "@assets/icons/logo.svg";
 
 type Props = {
 	title: string;
@@ -62,6 +64,29 @@ const {title} = Astro.props;
 		<title>{title}</title>
 	</head>
 	<body>
+		<div id="globalLoading">
+			<Image
+				src={logo}
+				width="200"
+				height="200"
+				alt="Logo"
+				loading="eager"
+				decoding="sync"
+			/>
+		</div>
 		<slot />
 	</body>
 </html>
+
+<script>
+	import {onContentLoaded} from "@utils/utils";
+
+	const loader = document.getElementById("globalLoading");
+	if (loader) {
+		const onLoad = () => {
+			loader.style.display = "none";
+		};
+
+		onContentLoaded(loader, "hidden", onLoad);
+	}
+</script>
