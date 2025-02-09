@@ -15,29 +15,32 @@ const currentYear = new Date().getFullYear();
 			Copyright &copy; {currentYear} | All rights reserved.
 		</p>
 		<div class="iconsContainer">
-			<a href={EXTERNAL_URL.GITHUB} class="icon" target="_blank">
-				<Icon
-					title={EXTERNAL_URL.GITHUB}
-					name="ri:github-fill"
-					width={30}
-					height={30}
-				/>
+			<a
+				href={EXTERNAL_URL.GITHUB.URL}
+				title={EXTERNAL_URL.GITHUB.TITLE}
+				aria-label={EXTERNAL_URL.GITHUB.ARIA_LABEL}
+				class="icon"
+				target="_blank"
+			>
+				<Icon name="ri:github-fill" width={30} height={30} />
 			</a>
-			<a href={EXTERNAL_URL.LINKEDIN} class="icon" target="_blank">
-				<Icon
-					title={EXTERNAL_URL.LINKEDIN}
-					name="ri:linkedin-box-fill"
-					width={30}
-					height={30}
-				/>
+			<a
+				href={EXTERNAL_URL.LINKEDIN.URL}
+				title={EXTERNAL_URL.LINKEDIN.TITLE}
+				aria-label={EXTERNAL_URL.GITHUB.ARIA_LABEL}
+				class="icon"
+				target="_blank"
+			>
+				<Icon name="ri:linkedin-box-fill" width={30} height={30} />
 			</a>
-			<a href={EXTERNAL_URL.INSTAGRAM} class="icon" target="_blank">
-				<Icon
-					title={EXTERNAL_URL.INSTAGRAM}
-					name="ri:instagram-line"
-					width={30}
-					height={30}
-				/>
+			<a
+				href={EXTERNAL_URL.INSTAGRAM.URL}
+				title={EXTERNAL_URL.INSTAGRAM.TITLE}
+				aria-label={EXTERNAL_URL.INSTAGRAM.ARIA_LABEL}
+				class="icon"
+				target="_blank"
+			>
+				<Icon name="ri:instagram-line" width={30} height={30} />
 			</a>
 		</div>
 	</div>
