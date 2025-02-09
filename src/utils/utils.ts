@@ -7,12 +7,9 @@ export const encodeFormValues = (data: Record<string, string>) => {
 		.join("&");
 };
 
-export const onContentLoaded = async (
-	element: HTMLElement,
-	className: string,
-	calback?: () => void,
-) => {
-	const results = await Promise.allSettled([
+export const onContentReady = async () => {
+	let ready = false;
+	await Promise.allSettled([
 		new Promise(resolve => {
 			if (
 				document.readyState === "complete" ||
@@ -24,13 +21,21 @@ export const onContentLoaded = async (
 			}
 		}),
 		document.fonts.ready,
-	]);
+	]).then(results => {
+		ready = results.every(result => result.status === "fulfilled");
+	});
 
-	const allSuccessful = results.every(
-		result => result.status === "fulfilled",
-	);
+	return ready;
+};
 
-	if (allSuccessful && element) {
+export const onContentLoaded = async (
+	element: HTMLElement,
+	className: string,
+	calback?: () => void,
+) => {
+	const ready = await onContentReady();
+
+	if (ready && element) {
 		// Start fade animation after content loaded and fonts loaded
 		element.classList.add(className);
 	} else {

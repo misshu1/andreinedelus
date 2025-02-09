@@ -31,7 +31,8 @@ const title = "Page not found · Andrei Nedelus";
 	import {onContentLoaded} from "@utils/utils";
 
 	const content = document.getElementById("content");
-	if (content) {
+	const {width} = document.body.getBoundingClientRect();
+	if (content && width > 450) {
 		onContentLoaded(content, "animate");
 	}
 

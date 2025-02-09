@@ -23,6 +23,10 @@
 	--zIndex_loader: 20;
 }
 
+html {
+	scroll-behavior: smooth;
+}
+
 html,
 body {
 	margin: 0;
@@ -121,4 +125,10 @@ h6 {
 
 #globalLoading.hidden {
 	animation: 0.5s forwards fadeGlobalLoading;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
 }

@@ -12,7 +12,7 @@
 }
 .textFieldContainer label {
 	font-size: 0.7rem;
-	opacity: 0.5;
+	color: var(--white);
 }
 
 .textFieldContainer input {

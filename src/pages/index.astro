@@ -17,3 +17,18 @@ import Experience from "@components/Experience.astro";
 		<Icon name="ri:alert-line" width={15} height={15} />
 	</Contact>
 </Layout>
+
+<script>
+	import {onContentReady} from "@utils/utils";
+	const [, hash] = window.location.hash.split("#");
+	const ready = await onContentReady();
+
+	if (hash && ready) {
+		const element = document.getElementById(hash);
+		element?.scrollIntoView({
+			block: "start",
+			behavior: "smooth",
+		});
+		element?.focus();
+	}
+</script>
