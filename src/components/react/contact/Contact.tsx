@@ -8,10 +8,10 @@ import {
 	validationSchema,
 	type ValidationSchema,
 } from "./validation-schema";
-import TextField from "@components/inputs/TextField/TextField";
+import TextField from "@ui/react/inputs/TextField/TextField";
 import {encodeFormValues} from "@utils/utils";
-import {useNotifications} from "@components/notifications/useNotifications";
-import Button from "@components/button/Button";
+import {useNotifications} from "@ui/react/notifications/useNotifications";
+import Button from "@ui/react/button/Button";
 
 type ContactProps = {
 	children: JSX.Element;
