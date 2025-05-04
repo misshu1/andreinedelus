@@ -1,3 +1,5 @@
+import type {FC} from "react";
+import classNames from "classnames";
 import Carousel, {
 	type CarouselImage,
 } from "@components/react/carousel/Carousel";
@@ -10,8 +12,6 @@ import image5 from "@assets/images/desk5.jpg";
 import image6 from "@assets/images/desk6.jpg";
 import image7 from "@assets/images/desk7.jpg";
 import image8 from "@assets/images/desk8.jpg";
-import type {FC} from "react";
-import classNames from "classnames";
 
 const images: CarouselImage[] = [
 	{
