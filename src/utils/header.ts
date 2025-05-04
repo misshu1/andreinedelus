@@ -1,3 +1,5 @@
+import {ROUTES_TO_SHOW_DYNAMIC_HEADER_TEXT} from "./url";
+
 const observer = (
 	element: HTMLElement,
 	headerElement: HTMLElement,
@@ -44,25 +46,22 @@ const observer = (
 };
 
 export const renderHeaderText = () => {
+	if (!ROUTES_TO_SHOW_DYNAMIC_HEADER_TEXT.includes(window.location.pathname))
+		return;
+
 	const headerTitle = document.getElementById("headerTitle");
 	const showcaseTitle = document.getElementById("showcaseTitle");
 	const experienceTitle = document.getElementById("experienceTitle");
 	const projectsTitle = document.getElementById("projectsTitle");
 	const contactTitle = document.getElementById("contactTitle");
+	const allElements: HTMLElement[] = [];
 
-	if (
-		showcaseTitle &&
-		headerTitle &&
-		projectsTitle &&
-		contactTitle &&
-		experienceTitle
-	) {
-		const allElements = [
-			showcaseTitle,
-			experienceTitle,
-			projectsTitle,
-			contactTitle,
-		];
+	if (showcaseTitle) allElements.push(showcaseTitle);
+	if (experienceTitle) allElements.push(experienceTitle);
+	if (projectsTitle) allElements.push(projectsTitle);
+	if (contactTitle) allElements.push(contactTitle);
+
+	if (headerTitle) {
 		const observers = allElements.map(element => ({
 			observer: observer(element, headerTitle, allElements),
 			element,

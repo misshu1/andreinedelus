@@ -36,6 +36,10 @@
 	transition: all 0.2s;
 }
 
+.contactLink:not(:hover, :focus, :active) {
+	color: inherit;
+}
+
 .textContainer {
 	display: flex;
 	justify-content: center;

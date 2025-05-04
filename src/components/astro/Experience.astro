@@ -5,11 +5,24 @@ import ExperienceContent from "./ExperienceContent.astro";
 import {Icon} from "astro-icon/components";
 
 const experiences = await getCollection("experience");
+type Props = {
+	showHeader?: boolean;
+};
+
+const {showHeader = true} = Astro.props;
 ---
 
 <section>
 	<div class="experiencesContainer">
-		<h2 id="experienceTitle" data-content="Experience">Experience</h2>
+		{
+			showHeader && (
+				<a href="/experience" class="link experienceLink">
+					<h2 id="experienceTitle" data-content="Experience">
+						Experience
+					</h2>
+				</a>
+			)
+		}
 		<ul class="experiencesList">
 			{
 				experiences
@@ -80,6 +93,10 @@ const experiences = await getCollection("experience");
 <style>
 	section {
 		width: 100%;
+	}
+
+	.experienceLink:not(:hover, :focus, :active) {
+		color: inherit;
 	}
 
 	#experienceTitle {
@@ -153,25 +170,6 @@ const experiences = await getCollection("experience");
 	@media only screen and (max-width: 600px) {
 		.experience {
 			grid-template-columns: 1fr;
-		}
-	}
-
-	@media only screen and (min-width: 600px) {
-		.experience:hover::after,
-		.experience:focus-within::after {
-			content: "";
-			position: absolute;
-			inset: -2rem -1rem;
-			z-index: var(--zIndex_behind_1);
-			background-color: rgba(30, 41, 59, 0.5);
-			background-color: var(--light_blue_100_transparent_10);
-			border-radius: 1rem;
-			overflow: hidden;
-		}
-
-		.experiencesList:hover .experience:not(:hover):not(:focus-within) {
-			opacity: 0.4;
-			filter: grayscale(0.6);
 		}
 	}
 </style>

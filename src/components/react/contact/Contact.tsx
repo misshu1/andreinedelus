@@ -15,9 +15,10 @@ import Button from "@ui/react/button/Button";
 
 type ContactProps = {
 	children: JSX.Element;
+	showHeader?: boolean;
 };
 
-const Contact: FC<ContactProps> = ({children}) => {
+const Contact: FC<ContactProps> = ({children, showHeader = true}) => {
 	const {showSuccess, showError} = useNotifications();
 	const {
 		control,
@@ -73,13 +74,20 @@ const Contact: FC<ContactProps> = ({children}) => {
 			>
 				<input style={{display: "none"}} name="bot-field" />
 				<div className={classNames(styles.textContainer)}>
-					<h2
-						id="contactTitle"
-						className={classNames(styles.title)}
-						data-content="Contact"
-					>
-						Contact
-					</h2>
+					{showHeader && (
+						<a
+							href="/contact"
+							className={classNames("link", styles.contactLink)}
+						>
+							<h2
+								id="contactTitle"
+								className={classNames(styles.title)}
+								data-content="Contact"
+							>
+								Contact
+							</h2>
+						</a>
+					)}
 					<p>
 						I'm here to build your next project, send me a message.
 					</p>

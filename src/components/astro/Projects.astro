@@ -2,14 +2,30 @@
 import Image from "astro/components/Image.astro";
 import elevenWindows from "@assets/images/eleven_windows_v2.png";
 import {EXTERNAL_URL} from "@utils/url";
+
+type Props = {
+	showHeader?: boolean;
+};
+
+const {showHeader = true} = Astro.props;
 ---
 
 <section>
 	<div class="projectsContainer">
 		<div class="project">
-			<h2 id="projectsTitle" class="title" data-content="Projects">
-				Projects
-			</h2>
+			{
+				showHeader && (
+					<a href="/projects" class="link projectsLink">
+						<h2
+							id="projectsTitle"
+							class="title"
+							data-content="Projects"
+						>
+							Projects
+						</h2>
+					</a>
+				)
+			}
 			<div class="info">
 				<p>
 					<a
@@ -56,6 +72,10 @@ import {EXTERNAL_URL} from "@utils/url";
 
 	section {
 		width: 100%;
+	}
+
+	.projectsLink:not(:hover, :focus, :active) {
+		color: inherit;
 	}
 
 	.title {

@@ -20,3 +20,5 @@ export const EXTERNAL_URL = {
 		ARIA_LABEL: "Eleven Windows",
 	},
 };
+
+export const ROUTES_TO_SHOW_DYNAMIC_HEADER_TEXT = ["/"];

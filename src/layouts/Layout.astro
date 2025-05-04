@@ -6,13 +6,18 @@ import LayoutHead from "./LayoutHead.astro";
 import Header from "@components/astro/Header.astro";
 import Footer from "@components/astro/Footer.astro";
 import Notifications from "@ui/react/notifications/Notifications";
+import {ROUTES_TO_SHOW_DYNAMIC_HEADER_TEXT} from "@utils/url";
 
 type Props = {
 	title?: string;
 	description?: string;
+	headerText?: string;
 };
 
-const {title, description} = Astro.props;
+const {title, description, headerText} = Astro.props;
+const isDynamicText = ROUTES_TO_SHOW_DYNAMIC_HEADER_TEXT.includes(
+	Astro.url.pathname,
+);
 ---
 
 <!doctype html>
@@ -29,7 +34,7 @@ const {title, description} = Astro.props;
 				decoding="sync"
 			/>
 		</div>
-		<Header />
+		<Header isDynamicText={isDynamicText} text={headerText} />
 		<slot />
 		<Notifications client:load />
 		<Footer />

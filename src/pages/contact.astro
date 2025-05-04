@@ -1,0 +1,11 @@
+---
+import Layout from "@layouts/Layout.astro";
+import ContactComponent from "@components/react/contact/Contact";
+import {Icon} from "astro-icon/components";
+---
+
+<Layout headerText="Contact">
+	<ContactComponent client:load showHeader={false}>
+		<Icon name="ri:alert-line" width={15} height={15} />
+	</ContactComponent>
+</Layout>

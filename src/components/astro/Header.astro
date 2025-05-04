@@ -1,6 +1,13 @@
 ---
 import Image from "astro/components/Image.astro";
 import logo from "@assets/icons/logo.svg";
+
+type Props = {
+	text?: string;
+	isDynamicText?: boolean;
+};
+
+const {isDynamicText, text} = Astro.props;
 ---
 
 <nav id="header">
@@ -15,7 +22,8 @@ import logo from "@assets/icons/logo.svg";
 				loading="eager"
 				decoding="sync"
 			/>
-			<span id="headerTitle" data-content=""></span>
+			<span id="headerTitle" data-content={isDynamicText ? "" : text}
+			></span>
 		</a>
 	</div>
 </nav>
