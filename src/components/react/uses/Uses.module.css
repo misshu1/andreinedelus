@@ -6,10 +6,6 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	max-width: 80rem;
-	width: 100%;
-	margin: 0 auto;
-	padding: 6rem 1rem 0 1rem;
 }
 
 .title {
@@ -20,4 +16,11 @@
 
 .usesLink:not(:hover, :focus, :active) {
 	color: inherit;
+}
+
+.usesContainer {
+	max-width: 80rem;
+	width: 100%;
+	margin: 0 auto;
+	padding: 6rem 1rem 0 1rem;
 }

@@ -71,24 +71,25 @@ type UsesProps = {
 const Uses: FC<UsesProps> = ({showHeader = true}) => {
 	return (
 		<section className={styles.container}>
-			<div className={styles.textContainer}>
-				{showHeader && (
-					<a
-						href="/uses"
-						className={classNames("link", styles.usesLink)}
-					>
-						<h2
-							id="usesTitle"
-							className={classNames(styles.title)}
-							data-content="Uses"
+			<div className={styles.usesContainer}>
+				<div className={styles.textContainer}>
+					{showHeader && (
+						<a
+							href="/uses"
+							className={classNames("link", styles.usesLink)}
 						>
-							Uses
-						</h2>
-					</a>
-				)}
+							<h2
+								id="usesTitle"
+								className={classNames(styles.title)}
+								data-content="Uses"
+							>
+								Uses
+							</h2>
+						</a>
+					)}
+				</div>
+				<Carousel images={images} />
 			</div>
-
-			<Carousel images={images} />
 		</section>
 	);
 };
