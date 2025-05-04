@@ -5,10 +5,14 @@ import "keen-slider/keen-slider.min.css";
 import classNames from "classnames";
 import styles from "./Carousel.module.css";
 
+export const IMAGE_FORMAT = {
+	LANDSCAPE: "LANDSCAPE",
+	PORTRAIT: "PORTRAIT",
+} as const;
 export type CarouselImage = {
 	id: number;
-	format: "landscape" | "portrait";
-	img: ImageMetadata;
+	format: keyof typeof IMAGE_FORMAT;
+	imgSrc: string;
 	alt: string;
 };
 
@@ -46,15 +50,19 @@ const Carousel: FC<CarouselProps> = ({images = []}) => {
 						.sort((a, b) => {
 							if (isPortrait()) {
 								if (a.format === b.format) return 0;
-								return a.format === "portrait" ? -1 : 1;
+								return a.format === IMAGE_FORMAT.PORTRAIT
+									? -1
+									: 1;
 							}
 							if (isLandscape()) {
 								if (a.format === b.format) return 0;
-								return a.format === "landscape" ? -1 : 1;
+								return a.format === IMAGE_FORMAT.LANDSCAPE
+									? -1
+									: 1;
 							}
 							return a.id - b.id;
 						})
-						.map(({img, alt}, index) => (
+						.map(({imgSrc, alt}, index) => (
 							<div
 								key={index}
 								className={classNames(
@@ -64,7 +72,7 @@ const Carousel: FC<CarouselProps> = ({images = []}) => {
 							>
 								<img
 									className={styles.img}
-									src={img.src}
+									src={imgSrc}
 									alt={alt}
 								/>
 							</div>
