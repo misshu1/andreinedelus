@@ -1,0 +1,23 @@
+.container {
+	width: 100%;
+}
+
+.textContainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	max-width: 80rem;
+	width: 100%;
+	margin: 0 auto;
+	padding: 6rem 1rem 0 1rem;
+}
+
+.title {
+	padding: 1rem 0;
+	font-size: 2rem;
+	transition: all 0.2s;
+}
+
+.usesLink:not(:hover, :focus, :active) {
+	color: inherit;
+}

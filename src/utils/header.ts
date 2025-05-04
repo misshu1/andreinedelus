@@ -54,12 +54,14 @@ export const renderHeaderText = () => {
 	const experienceTitle = document.getElementById("experienceTitle");
 	const projectsTitle = document.getElementById("projectsTitle");
 	const contactTitle = document.getElementById("contactTitle");
+	const usesTitle = document.getElementById("usesTitle");
 	const allElements: HTMLElement[] = [];
 
 	if (showcaseTitle) allElements.push(showcaseTitle);
 	if (experienceTitle) allElements.push(experienceTitle);
 	if (projectsTitle) allElements.push(projectsTitle);
 	if (contactTitle) allElements.push(contactTitle);
+	if (usesTitle) allElements.push(usesTitle);
 
 	if (headerTitle) {
 		const observers = allElements.map(element => ({

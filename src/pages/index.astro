@@ -4,6 +4,7 @@ import Layout from "@layouts/Layout.astro";
 import Showcase from "@components/astro/Showcase.astro";
 import Projects from "@components/astro/Projects.astro";
 import Contact from "@components/react/contact/Contact";
+import Uses from "@components/react/uses/Uses";
 import {Icon} from "astro-icon/components";
 import Experience from "@components/astro/Experience.astro";
 ---
@@ -16,6 +17,7 @@ import Experience from "@components/astro/Experience.astro";
 	<Contact client:load>
 		<Icon name="ri:alert-line" width={15} height={15} />
 	</Contact>
+	<Uses client:load client:only="react" />
 </Layout>
 
 <script>

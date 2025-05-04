@@ -4,7 +4,7 @@ company: Bytex
 jobTitle: React Developer
 url: https://bytex.net/
 isVisible: true
-order: 1
+order: 2
 tags:
     - TypeScript
     - React

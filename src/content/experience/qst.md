@@ -4,7 +4,7 @@ company: Quick Suite Trading
 jobTitle: Senior Angular Developer
 url: https://qst.global/
 isVisible: true
-order: 4
+order: 1
 tags:
     - Angular
     - Angular Material

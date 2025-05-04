@@ -1,0 +1,99 @@
+import {useState, type FC} from "react";
+import {useKeenSlider} from "keen-slider/react";
+import {isPortrait, isLandscape} from "@utils/utils";
+import "keen-slider/keen-slider.min.css";
+import classNames from "classnames";
+import styles from "./Carousel.module.css";
+
+export type CarouselImage = {
+	id: number;
+	format: "landscape" | "portrait";
+	img: ImageMetadata;
+	alt: string;
+};
+
+type CarouselProps = {
+	images: CarouselImage[];
+};
+
+const Carousel: FC<CarouselProps> = ({images = []}) => {
+	const [carouselLoaded, setCarouselLoaded] = useState(false);
+	const [currentSlide, setCurrentSlide] = useState(0);
+	const [sliderRef, instanceRef] = useKeenSlider(
+		{
+			loop: true,
+			drag: true,
+			mode: "snap",
+			slides: {
+				perView: 1,
+				spacing: 16,
+			},
+			created() {
+				setCarouselLoaded(true);
+			},
+			slideChanged(slider) {
+				setCurrentSlide(slider.track.details.rel);
+			},
+		},
+		[],
+	);
+
+	return (
+		<>
+			<div className={styles.carouselContainer}>
+				<div ref={sliderRef} className={classNames("keen-slider")}>
+					{images
+						.sort((a, b) => {
+							if (isPortrait()) {
+								if (a.format === b.format) return 0;
+								return a.format === "portrait" ? -1 : 1;
+							}
+							if (isLandscape()) {
+								if (a.format === b.format) return 0;
+								return a.format === "landscape" ? -1 : 1;
+							}
+							return a.id - b.id;
+						})
+						.map(({img, alt}, index) => (
+							<div
+								key={index}
+								className={classNames(
+									"keen-slider__slide",
+									styles.imgContainer,
+								)}
+							>
+								<img
+									className={styles.img}
+									src={img.src}
+									alt={alt}
+								/>
+							</div>
+						))}
+				</div>
+			</div>
+			{carouselLoaded && instanceRef.current && (
+				<div className={styles.dots}>
+					{[
+						...Array(
+							instanceRef.current.track.details.slides.length,
+						).keys(),
+					].map(idx => {
+						return (
+							<button
+								key={idx}
+								onClick={() => {
+									instanceRef.current?.moveToIdx(idx);
+								}}
+								className={classNames(styles.dot, {
+									[styles.active]: currentSlide === idx,
+								})}
+							></button>
+						);
+					})}
+				</div>
+			)}
+		</>
+	);
+};
+
+export default Carousel;

@@ -4,7 +4,7 @@ company: OSF Digital
 jobTitle: Senior React Developer
 url: https://osf.digital/
 isVisible: true
-order: 2
+order: 3
 tags:
     - TypeScript
     - JavaScript

@@ -48,3 +48,6 @@ export const onContentLoaded = async (
 		calback && calback();
 	});
 };
+
+export const isPortrait = () => window.innerHeight > window.innerWidth;
+export const isLandscape = () => window.innerWidth > window.innerHeight;
