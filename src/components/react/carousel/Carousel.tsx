@@ -83,7 +83,8 @@ const Carousel: FC<CarouselProps> = ({images = []}) => {
 				<div className={styles.dots}>
 					{[
 						...Array(
-							instanceRef.current.track.details.slides.length,
+							instanceRef.current.track.details?.slides?.length ??
+								0,
 						).keys(),
 					].map(idx => {
 						return (
