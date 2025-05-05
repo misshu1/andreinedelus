@@ -1,8 +1,6 @@
 import type {FC} from "react";
 import classNames from "classnames";
-import Carousel, {
-	type CarouselImage,
-} from "@components/react/carousel/Carousel";
+import Carousel, {type CarouselImage} from "@ui/react/carousel/Carousel";
 import styles from "./Uses.module.css";
 
 type UsesProps = {
