@@ -14,6 +14,9 @@ const currentYear = new Date().getFullYear();
 		<p>
 			Copyright &copy; {currentYear} | All rights reserved.
 		</p>
+		<button id="cookieBtn" class="cookieBtn link" type="button">
+			Cookie Preferences
+		</button>
 		<div class="iconsContainer">
 			<a
 				href={EXTERNAL_URL.GITHUB.URL}
@@ -46,6 +49,17 @@ const currentYear = new Date().getFullYear();
 	</div>
 </footer>
 
+<script>
+	import {showPreferences} from "vanilla-cookieconsent";
+
+	document.addEventListener("astro:page-load", () => {
+		const cookieBtn = document.getElementById("cookieBtn");
+		cookieBtn?.addEventListener("click", () => {
+			showPreferences();
+		});
+	});
+</script>
+
 <style>
 	footer {
 		margin-top: 6rem;
@@ -62,6 +76,13 @@ const currentYear = new Date().getFullYear();
 		padding: 2rem 1rem;
 		max-width: 80rem;
 		margin: 0 auto;
+	}
+
+	.cookieBtn {
+		background: transparent;
+		border: none;
+		text-decoration: underline;
+		cursor: pointer;
 	}
 
 	.iconsContainer {

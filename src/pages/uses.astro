@@ -2,7 +2,7 @@
 import Layout from "@layouts/Layout.astro";
 import UsesComponent from "@components/react/uses/Uses";
 import {getUsesOptimizedImages} from "@utils/images";
-import type {CarouselImage} from "@components/react/carousel/Carousel";
+import type {CarouselImage} from "@ui/react/carousel/Carousel";
 
 const optimizedImages: CarouselImage[] = await getUsesOptimizedImages();
 ---

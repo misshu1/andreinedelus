@@ -49,6 +49,7 @@ body {
 	background: var(--light_blue_200);
 }
 
+.link,
 a {
 	color: var(--light_blue_200);
 	text-decoration: none;

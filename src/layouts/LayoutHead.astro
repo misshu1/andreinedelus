@@ -1,6 +1,7 @@
 ---
 import {getThumbnail} from "@utils/cloudinary";
 import "modern-normalize/modern-normalize.css";
+import {ClientRouter} from "astro:transitions";
 
 type Props = {
 	title?: string;
@@ -85,4 +86,37 @@ const image = getThumbnail(title, description);
 	<meta property="twitter:title" content={title} />
 	<meta property="twitter:description" content={description} />
 	<meta property="twitter:image" content={image} />
+	<ClientRouter />
+	<!-- Google tag (gtag.js) -->
+	<script
+		is:inline
+		src="https://www.googletagmanager.com/gtag/js?id=G-MMVRDEHQT7"></script>
+
+	<script>
+		import {hasCookieConsentFor} from "@utils/cookies";
+
+		declare global {
+			interface Window {
+				dataLayer: Record<string, any>[];
+				gtag: (...args: any[]) => void;
+			}
+		}
+
+		document.addEventListener("astro:page-load", () => {
+			const hasAnalyticsConsent = hasCookieConsentFor("analytics");
+			window.dataLayer = window.dataLayer || [];
+			window.gtag = function gtag(...args: any[]) {
+				window.dataLayer.push(arguments);
+			};
+			// TODO Update this condition
+			if (!hasAnalyticsConsent) {
+				window.gtag("consent", "default", {
+					ad_storage: "denied",
+					ad_user_data: "denied",
+					ad_personalization: "denied",
+					analytics_storage: "denied",
+				});
+			}
+		});
+	</script>
 </head>
