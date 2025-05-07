@@ -84,7 +84,7 @@ export const getUsesOptimizedImages = async () => {
 		images.map(async image => ({
 			...image,
 			webpImgSrc: (await getImage(getImageOptions(image, "webp"))).src,
-			jpgImgSrc: (await getImage(getImageOptions(image, "jpeg"))).src,
+			jpgImgSrc: (await getImage(getImageOptions(image, "jpg"))).src,
 		})),
 	);
 };
