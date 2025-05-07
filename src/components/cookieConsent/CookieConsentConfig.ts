@@ -8,10 +8,6 @@ declare global {
 }
 
 export type CookieCategoryKey = "necessary" | "functionality" | "analytics";
-interface Test extends CookieConsentConfig {
-	categories: Record<CookieCategoryKey, CookieConsent.Category>;
-}
-
 export const config: CookieConsentConfig = {
 	root: "#cc-container",
 	guiOptions: {

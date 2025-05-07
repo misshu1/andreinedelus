@@ -5,14 +5,15 @@ import "keen-slider/keen-slider.min.css";
 import classNames from "classnames";
 import styles from "./Carousel.module.css";
 
-export const IMAGE_FORMAT = {
+export const IMAGE_ORIENTATION = {
 	LANDSCAPE: "LANDSCAPE",
 	PORTRAIT: "PORTRAIT",
 } as const;
 export type CarouselImage = {
 	id: number;
-	format: keyof typeof IMAGE_FORMAT;
-	imgSrc: string;
+	orientation: keyof typeof IMAGE_ORIENTATION;
+	webpImgSrc: string;
+	jpgImgSrc: string;
 	alt: string;
 };
 
@@ -49,33 +50,41 @@ const Carousel: FC<CarouselProps> = ({images = []}) => {
 					{images
 						.sort((a, b) => {
 							if (isPortrait()) {
-								if (a.format === b.format) return 0;
-								return a.format === IMAGE_FORMAT.PORTRAIT
+								if (a.orientation === b.orientation) return 0;
+								return a.orientation ===
+									IMAGE_ORIENTATION.PORTRAIT
 									? -1
 									: 1;
 							}
 							if (isLandscape()) {
-								if (a.format === b.format) return 0;
-								return a.format === IMAGE_FORMAT.LANDSCAPE
+								if (a.orientation === b.orientation) return 0;
+								return a.orientation ===
+									IMAGE_ORIENTATION.LANDSCAPE
 									? -1
 									: 1;
 							}
 							return a.id - b.id;
 						})
-						.map(({imgSrc, alt}, index) => (
-							<div
+						.map(({webpImgSrc, jpgImgSrc, alt}, index) => (
+							<picture
 								key={index}
 								className={classNames(
 									"keen-slider__slide",
 									styles.imgContainer,
 								)}
 							>
+								<source
+									className={styles.img}
+									srcSet={webpImgSrc}
+									type="image/webp"
+								/>
 								<img
 									className={styles.img}
-									src={imgSrc}
+									src={jpgImgSrc}
 									alt={alt}
+									decoding="async"
 								/>
-							</div>
+							</picture>
 						))}
 				</div>
 			</div>
