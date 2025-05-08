@@ -95,19 +95,13 @@ const image = getThumbnail(title, description);
 	<script>
 		import {hasCookieConsentFor} from "@utils/cookies";
 
-		declare global {
-			interface Window {
-				dataLayer: Record<string, any>[];
-				gtag: (...args: any[]) => void;
-			}
-		}
-
 		document.addEventListener("astro:page-load", () => {
 			const hasAnalyticsConsent = hasCookieConsentFor("analytics");
 			window.dataLayer = window.dataLayer || [];
-			window.gtag = function gtag(...args: any[]) {
+			window.gtag = function gtag() {
 				window.dataLayer.push(arguments);
 			};
+
 			// TODO Update this condition
 			if (!hasAnalyticsConsent) {
 				window.gtag("consent", "default", {
@@ -115,6 +109,9 @@ const image = getThumbnail(title, description);
 					ad_user_data: "denied",
 					ad_personalization: "denied",
 					analytics_storage: "denied",
+					functionality_storage: "denied",
+					personalization_storage: "denied",
+					security_storage: "denied",
 				});
 			}
 		});
