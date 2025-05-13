@@ -1,4 +1,4 @@
-import type {CookieCategoryKey} from "@components/cookieConsent/CookieConsentConfig";
+import type {CookieCategoryKey} from "@components/cookieConsent/banner/CookieConsentConfig";
 import {getCookie} from "vanilla-cookieconsent";
 
 export const hasCookieConsentFor = (category: CookieCategoryKey) => {

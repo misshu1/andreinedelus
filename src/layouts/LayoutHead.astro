@@ -2,6 +2,7 @@
 import {getThumbnail} from "@utils/cloudinary";
 import "modern-normalize/modern-normalize.css";
 import {ClientRouter} from "astro:transitions";
+import GA4 from "@components/cookieConsent/analytics/GA4.astro";
 
 type Props = {
 	title?: string;
@@ -87,33 +88,5 @@ const image = getThumbnail(title, description);
 	<meta property="twitter:description" content={description} />
 	<meta property="twitter:image" content={image} />
 	<ClientRouter />
-	<!-- Google tag (gtag.js) -->
-	<script
-		is:inline
-		src="https://www.googletagmanager.com/gtag/js?id=G-MMVRDEHQT7"></script>
-
-	<script>
-		import {hasCookieConsentFor} from "@utils/cookies";
-
-		document.addEventListener("astro:page-load", () => {
-			const hasAnalyticsConsent = hasCookieConsentFor("analytics");
-			window.dataLayer = window.dataLayer || [];
-			window.gtag = function gtag() {
-				window.dataLayer.push(arguments);
-			};
-
-			// TODO Update this condition
-			if (!hasAnalyticsConsent) {
-				window.gtag("consent", "default", {
-					ad_storage: "denied",
-					ad_user_data: "denied",
-					ad_personalization: "denied",
-					analytics_storage: "denied",
-					functionality_storage: "denied",
-					personalization_storage: "denied",
-					security_storage: "denied",
-				});
-			}
-		});
-	</script>
+	<GA4 />
 </head>

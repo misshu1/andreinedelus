@@ -6,6 +6,9 @@ const CAT_ANALYTICS = "analytics";
 const CAT_FUNCTIONALITY = "functionality";
 const CAT_SECURITY = "security";
 
+const AD_STORAGE = "ad_storage"; // Not used
+const AD_USER_DATA = "ad_user_data"; // Not used
+const AD_PERSONALIZATION = "ad_personalization"; // Not used
 const SERVICE_PERSONALIZATION_STORAGE = "personalization_storage"; // Not used for now
 const SERVICE_ANALYTICS_STORAGE = "analytics_storage";
 const SERVICE_FUNCTIONALITY_STORAGE = "functionality_storage";
@@ -13,6 +16,9 @@ const SERVICE_SECURITY_STORAGE = "security_storage";
 
 const updateGtagConsent = () => {
 	window.gtag("consent", "update", {
+		[AD_STORAGE]: "denied",
+		[AD_USER_DATA]: "denied",
+		[AD_PERSONALIZATION]: "denied",
 		[SERVICE_ANALYTICS_STORAGE]: acceptedService(
 			SERVICE_ANALYTICS_STORAGE,
 			CAT_ANALYTICS,
@@ -38,8 +44,6 @@ const updateGtagConsent = () => {
 			? "granted"
 			: "denied",
 	});
-	window.gtag("js", new Date());
-	window.gtag("config", "G-MMVRDEHQT7");
 };
 
 export type CookieCategoryKey =
