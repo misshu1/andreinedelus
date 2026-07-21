@@ -15,7 +15,8 @@
 	align-items: center;
 	flex-direction: column;
 	gap: 0.7rem;
-	padding: 0 10rem;
+	max-width: 60rem;
+	width: 100%;
 }
 
 .title {
