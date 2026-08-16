@@ -55,34 +55,39 @@ const Carousel: FC<CarouselProps> = ({images = []}) => {
 		<>
 			<div className={styles.carouselContainer}>
 				<div ref={sliderRef} className={classNames("keen-slider")}>
-					{sortedImages.map(
-						({webpImgSrc, jpgImgSrc, avifImgSrc, alt}, index) => (
-							<picture
-								key={index}
-								className={classNames(
-									"keen-slider__slide",
-									styles.imgContainer,
-								)}
-							>
-								<source
-									className={styles.img}
-									srcSet={avifImgSrc}
-									type="image/avif"
-								/>
-								<source
-									className={styles.img}
-									srcSet={webpImgSrc}
-									type="image/webp"
-								/>
-								<img
-									className={styles.img}
-									src={jpgImgSrc}
-									alt={alt}
-									decoding="async"
-								/>
-							</picture>
-						),
-					)}
+					{sortedImages.map(({webp, jpg, avif, alt}, index) => (
+						<picture
+							key={index}
+							className={classNames(
+								"keen-slider__slide",
+								styles.imgContainer,
+							)}
+						>
+							<source
+								className={styles.img}
+								srcSet={avif
+									.map(({src, width}) => `${src} ${width}w`)
+									.join(", ")}
+								type="image/avif"
+							/>
+							<source
+								className={styles.img}
+								srcSet={webp
+									.map(({src, width}) => `${src} ${width}w`)
+									.join(", ")}
+								type="image/webp"
+							/>
+							<img
+								className={styles.img}
+								srcSet={jpg
+									.map(({src, width}) => `${src} ${width}w`)
+									.join(", ")}
+								alt={alt}
+								sizes="(min-width: 1216px) 1216px, 100vw"
+								decoding="async"
+							/>
+						</picture>
+					))}
 				</div>
 			</div>
 			{carouselLoaded && instanceRef.current && (
