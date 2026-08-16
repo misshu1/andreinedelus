@@ -34,11 +34,17 @@
 }
 
 .dot:focus {
-	outline: none;
+	outline: 1px solid var(--light_blue_200);
+	outline-offset: 2px;
 }
 
 .dot.active {
 	background: var(--green_100);
 	transition: background 0.2s;
 	transform: scale(1.5);
+}
+
+.dot.active:focus {
+	outline-color: var(--green_100);
+	outline-offset: 2px;
 }

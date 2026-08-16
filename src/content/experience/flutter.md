@@ -1,7 +1,7 @@
 ---
 dateRange: Feb 2023 - Present
 company: Flutter UK & Ireland
-jobTitle: Software Engineer (Frontend)
+jobTitle: Senior React Developer
 url: https://careers.flutteruki.com/
 isVisible: true
 order: 5

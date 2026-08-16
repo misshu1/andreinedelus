@@ -26,6 +26,10 @@
 	transition: all 0.2s;
 }
 
+.usesLink {
+	margin-bottom: 2rem;
+}
+
 .usesLink:not(:hover, :focus, :active) {
 	color: inherit;
 }
