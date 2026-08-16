@@ -1,29 +1,19 @@
-import {useState, type FC} from "react";
+import {useEffect, useState, type FC} from "react";
 import {useKeenSlider} from "keen-slider/react";
 import {isPortrait, isLandscape} from "@utils/utils";
 import "keen-slider/keen-slider.min.css";
 import classNames from "classnames";
 import styles from "./Carousel.module.css";
-
-export const IMAGE_ORIENTATION = {
-	LANDSCAPE: "LANDSCAPE",
-	PORTRAIT: "PORTRAIT",
-} as const;
-export type CarouselImage = {
-	id: number;
-	orientation: keyof typeof IMAGE_ORIENTATION;
-	webpImgSrc: string;
-	jpgImgSrc: string;
-	alt: string;
-};
+import {IMAGE_ORIENTATION, type OptimizedImage} from "@utils/images";
 
 type CarouselProps = {
-	images: CarouselImage[];
+	images: OptimizedImage[];
 };
 
 const Carousel: FC<CarouselProps> = ({images = []}) => {
 	const [carouselLoaded, setCarouselLoaded] = useState(false);
 	const [currentSlide, setCurrentSlide] = useState(0);
+	const [sortedImages, setSortedImages] = useState<OptimizedImage[]>(images);
 	const [sliderRef, instanceRef] = useKeenSlider(
 		{
 			loop: true,
@@ -43,29 +33,30 @@ const Carousel: FC<CarouselProps> = ({images = []}) => {
 		[],
 	);
 
+	useEffect(() => {
+		const imagesCopy = [...images];
+
+		imagesCopy.sort((a, b) => {
+			if (isPortrait()) {
+				if (a.orientation === b.orientation) return 0;
+				return a.orientation === IMAGE_ORIENTATION.PORTRAIT ? -1 : 1;
+			}
+			if (isLandscape()) {
+				if (a.orientation === b.orientation) return 0;
+				return a.orientation === IMAGE_ORIENTATION.LANDSCAPE ? -1 : 1;
+			}
+			return a.id - b.id;
+		});
+
+		setSortedImages(imagesCopy);
+	}, [images]);
+
 	return (
 		<>
 			<div className={styles.carouselContainer}>
 				<div ref={sliderRef} className={classNames("keen-slider")}>
-					{images
-						.sort((a, b) => {
-							if (isPortrait()) {
-								if (a.orientation === b.orientation) return 0;
-								return a.orientation ===
-									IMAGE_ORIENTATION.PORTRAIT
-									? -1
-									: 1;
-							}
-							if (isLandscape()) {
-								if (a.orientation === b.orientation) return 0;
-								return a.orientation ===
-									IMAGE_ORIENTATION.LANDSCAPE
-									? -1
-									: 1;
-							}
-							return a.id - b.id;
-						})
-						.map(({webpImgSrc, jpgImgSrc, alt}, index) => (
+					{sortedImages.map(
+						({webpImgSrc, jpgImgSrc, avifImgSrc, alt}, index) => (
 							<picture
 								key={index}
 								className={classNames(
@@ -73,6 +64,11 @@ const Carousel: FC<CarouselProps> = ({images = []}) => {
 									styles.imgContainer,
 								)}
 							>
+								<source
+									className={styles.img}
+									srcSet={avifImgSrc}
+									type="image/avif"
+								/>
 								<source
 									className={styles.img}
 									srcSet={webpImgSrc}
@@ -85,7 +81,8 @@ const Carousel: FC<CarouselProps> = ({images = []}) => {
 									decoding="async"
 								/>
 							</picture>
-						))}
+						),
+					)}
 				</div>
 			</div>
 			{carouselLoaded && instanceRef.current && (

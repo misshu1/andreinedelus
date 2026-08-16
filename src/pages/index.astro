@@ -7,10 +7,7 @@ import Contact from "@components/react/contact/Contact";
 import Uses from "@components/react/uses/Uses";
 import {Icon} from "astro-icon/components";
 import Experience from "@components/astro/Experience.astro";
-import {getUsesOptimizedImages} from "@utils/images";
-import type {CarouselImage} from "@ui/react/carousel/Carousel";
-
-const optimizedImages: CarouselImage[] = await getUsesOptimizedImages();
+import {optimizedUsesImages} from "src/data/usesImages";
 ---
 
 <Layout>
@@ -18,23 +15,24 @@ const optimizedImages: CarouselImage[] = await getUsesOptimizedImages();
 	<CompaniesLogos />
 	<Experience />
 	<Projects />
-	<Contact client:visible>
+	<Contact client:idle>
 		<Icon name="ri:alert-line" width={15} height={15} />
 	</Contact>
-	<Uses client:visible images={optimizedImages} />
+	<Uses client:idle images={optimizedUsesImages} />
 </Layout>
 
 <script>
 	import {onContentReady} from "@utils/utils";
 	const [, hash] = window.location.hash.split("#");
-	const ready = await onContentReady();
 
-	if (hash && ready) {
-		const element = document.getElementById(hash);
-		element?.scrollIntoView({
-			block: "start",
-			behavior: "smooth",
-		});
-		element?.focus();
-	}
+	onContentReady().then(ready => {
+		if (hash && ready) {
+			const element = document.getElementById(hash);
+			element?.scrollIntoView({
+				block: "start",
+				behavior: "smooth",
+			});
+			element?.focus();
+		}
+	});
 </script>

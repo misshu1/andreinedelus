@@ -38,7 +38,7 @@ const isDynamicText = ROUTES_TO_SHOW_DYNAMIC_HEADER_TEXT.includes(
 		</div>
 		<Header isDynamicText={isDynamicText} text={headerText} />
 		<slot />
-		<Notifications client:load />
+		<Notifications client:idle />
 		<Footer />
 		<div transition:persist="cookie-consent" id="cc-container">
 			<CookieConsent />

@@ -1,10 +1,11 @@
 import type {FC} from "react";
 import classNames from "classnames";
-import Carousel, {type CarouselImage} from "@ui/react/carousel/Carousel";
+import Carousel from "@ui/react/carousel/Carousel";
 import styles from "./Uses.module.css";
+import type {OptimizedImage} from "@utils/images";
 
 type UsesProps = {
-	images: CarouselImage[];
+	images: OptimizedImage[];
 	showHeader?: boolean;
 };
 

@@ -49,5 +49,12 @@ export const onContentLoaded = async (
 	});
 };
 
-export const isPortrait = () => window.innerHeight > window.innerWidth;
-export const isLandscape = () => window.innerWidth > window.innerHeight;
+export const isPortrait = () => {
+	if (typeof window === "undefined") return false;
+	return window.innerHeight > window.innerWidth;
+};
+
+export const isLandscape = () => {
+	if (typeof window === "undefined") return false;
+	return window.innerWidth > window.innerHeight;
+};
