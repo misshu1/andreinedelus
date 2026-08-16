@@ -2,6 +2,7 @@
 import {Image} from "astro:assets";
 import elevenWindows from "@assets/images/eleven_windows_v2.png";
 import {EXTERNAL_URL} from "@utils/url";
+import {Icon} from "astro-icon/components";
 
 type Props = {
 	showHeader?: boolean;
@@ -33,9 +34,15 @@ const {showHeader = true} = Astro.props;
 						aria-label={EXTERNAL_URL.ELEVEN_WINDOWS.ARIA_LABEL}
 						title={EXTERNAL_URL.ELEVEN_WINDOWS.TITLE}
 						target="_blank"
-						class="link"
+						class="link projectLink"
 					>
-						ElevenWindows.dev
+						<span> ElevenWindows.dev </span>
+						<Icon
+							title="ElevenWindows.dev "
+							name="ri:external-link-line"
+							width={20}
+							height={20}
+						/>
 					</a>
 					It's a clone of the Windows OS, built with React, JavaScript,
 					CSS, and Styled Components.
@@ -75,12 +82,12 @@ const {showHeader = true} = Astro.props;
 		left: -5px;
 		top: 1rem;
 		z-index: var(--zIndex_1);
-		width: 4rem;
+		width: 4.5rem;
 		padding: 0.2rem;
 		text-align: center;
-		letter-spacing: 1px;
+		letter-spacing: 2px;
 		font-weight: 600;
-		color: var(--concrete);
+		color: var(--dark_blue_200);
 		background-color: var(--light_blue_100);
 		border-top-right-radius: 0.2rem;
 		border-bottom-right-radius: 0.2rem;
@@ -101,6 +108,22 @@ const {showHeader = true} = Astro.props;
 
 	section {
 		width: 100%;
+	}
+
+	.projectLink {
+		display: inline-flex;
+		gap: 0.25rem;
+
+		svg {
+			display: inline-block;
+			vertical-align: middle;
+			transform: scale(0.8);
+			transition: transform 0.1s;
+		}
+	}
+
+	.projectLink:hover svg {
+		transform: scale(1) translate3d(0.125rem, -0.125rem, 0);
 	}
 
 	.projectsLink {

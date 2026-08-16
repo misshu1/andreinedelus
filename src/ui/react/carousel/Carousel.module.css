@@ -18,8 +18,9 @@
 
 .dots {
 	display: flex;
-	padding: 10px 0;
+	gap: 0.25rem;
 	justify-content: center;
+	padding: 10px 0;
 }
 
 .dot {

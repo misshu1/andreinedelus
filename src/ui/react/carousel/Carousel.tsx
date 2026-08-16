@@ -51,53 +51,83 @@ const Carousel: FC<CarouselProps> = ({images = []}) => {
 		setSortedImages(imagesCopy);
 	}, [images]);
 
+	const getImagesSizes = (
+		orientation: keyof typeof IMAGE_ORIENTATION,
+		width: number,
+		height: number,
+	) => {
+		if (orientation === IMAGE_ORIENTATION.LANDSCAPE) {
+			return "(min-width: 1216px) 1216px, 100vw";
+		}
+
+		const maxHeight = 800;
+		const portraitWidth = Math.round((width / height) * maxHeight);
+
+		return `(min-width: 1216px) ${portraitWidth}px, 100vw`;
+	};
+
 	return (
 		<>
 			<div className={styles.carouselContainer}>
 				<div ref={sliderRef} className={classNames("keen-slider")}>
-					{sortedImages.map(({webp, jpg, avif, alt}, index) => (
-						<picture
-							key={index}
-							className={classNames(
-								"keen-slider__slide",
-								styles.imgContainer,
-							)}
-						>
-							<source
-								className={styles.img}
-								srcSet={avif
-									.map(({src, width}) => `${src} ${width}w`)
-									.join(", ")}
-								type="image/avif"
-							/>
-							<source
-								className={styles.img}
-								srcSet={webp
-									.map(({src, width}) => `${src} ${width}w`)
-									.join(", ")}
-								type="image/webp"
-							/>
-							<img
-								className={styles.img}
-								srcSet={jpg
-									.map(({src, width}) => `${src} ${width}w`)
-									.join(", ")}
-								alt={alt}
-								sizes="(min-width: 1216px) 1216px, 100vw"
-								decoding="async"
-							/>
-						</picture>
-					))}
+					{sortedImages.map(
+						(
+							{webp, jpg, avif, alt, height, width, orientation},
+							index,
+						) => (
+							<picture
+								key={index}
+								className={classNames(
+									"keen-slider__slide",
+									styles.imgContainer,
+								)}
+							>
+								<source
+									className={styles.img}
+									srcSet={avif
+										.map(
+											({src, width}) =>
+												`${src} ${width}w`,
+										)
+										.join(", ")}
+									type="image/avif"
+								/>
+								<source
+									className={styles.img}
+									srcSet={webp
+										.map(
+											({src, width}) =>
+												`${src} ${width}w`,
+										)
+										.join(", ")}
+									type="image/webp"
+								/>
+								<img
+									className={styles.img}
+									srcSet={jpg
+										.map(
+											({src, width}) =>
+												`${src} ${width}w`,
+										)
+										.join(", ")}
+									alt={alt}
+									sizes={getImagesSizes(
+										orientation,
+										width,
+										height,
+									)}
+									decoding="async"
+									width={width}
+									height={height}
+								/>
+							</picture>
+						),
+					)}
 				</div>
 			</div>
 			{carouselLoaded && instanceRef.current && (
 				<div className={styles.dots}>
-					{[
-						...Array(
-							instanceRef.current.track.details?.slides?.length ??
-								0,
-						).keys(),
-					].map(idx => {
+					{sortedImages.map(({alt}, idx) => {
 						return (
 							<button
 								key={idx}
@@ -107,6 +137,10 @@ const Carousel: FC<CarouselProps> = ({images = []}) => {
 								className={classNames(styles.dot, {
 									[styles.active]: currentSlide === idx,
 								})}
+								aria-label={`Go to slide ${idx + 1}: ${alt}`}
+								aria-current={
+									currentSlide === idx ? "true" : undefined
+								}
 							></button>
 						);
 					})}

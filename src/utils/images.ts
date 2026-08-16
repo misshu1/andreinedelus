@@ -14,6 +14,8 @@ export type OptimizedImage = {
 	jpg: ResponsiveImage[];
 	avif: ResponsiveImage[];
 	alt: string;
+	width: number;
+	height: number;
 };
 
 export type ResponsiveImage = {
@@ -21,7 +23,10 @@ export type ResponsiveImage = {
 	width: number;
 };
 
-export type Image = Omit<OptimizedImage, "webp" | "jpg" | "avif"> &
+export type Image = Omit<
+	OptimizedImage,
+	"webp" | "jpg" | "avif" | "width" | "height"
+> &
 	Record<"img", ImageMetadata>;
 
 const getImageOptions = (
@@ -41,7 +46,7 @@ const getImageOptions = (
 });
 
 const getImagesByFormat = (image: Image, format: ImageOutputFormat) => {
-	const sizes = [450, 750, 1200];
+	const sizes = [320, 480, 640, 768, 1200];
 
 	return Promise.all(
 		sizes.map(async size => ({
@@ -62,6 +67,8 @@ export const getUsesOptimizedImages = async (images: Image[]) => {
 
 			return {
 				...image,
+				width: image.img.width,
+				height: image.img.height,
 				avif,
 				webp,
 				jpg,
