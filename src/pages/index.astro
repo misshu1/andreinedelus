@@ -18,10 +18,10 @@ const optimizedImages: CarouselImage[] = await getUsesOptimizedImages();
 	<CompaniesLogos />
 	<Experience />
 	<Projects />
-	<Contact client:load>
+	<Contact client:visible>
 		<Icon name="ri:alert-line" width={15} height={15} />
 	</Contact>
-	<Uses client:only="react" images={optimizedImages} />
+	<Uses client:visible images={optimizedImages} />
 </Layout>
 
 <script>
