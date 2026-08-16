@@ -53,6 +53,7 @@ const {showHeader = true} = Astro.props;
 				title={EXTERNAL_URL.ELEVEN_WINDOWS.TITLE}
 				target="_blank"
 			>
+				<div class="projectYear">2021</div>
 				<Image
 					class="img"
 					src={elevenWindows}
@@ -68,6 +69,34 @@ const {showHeader = true} = Astro.props;
 <style>
 	#projectsTitle {
 		transition: all 0.2s;
+	}
+	.projectYear {
+		position: absolute;
+		left: -5px;
+		top: 1rem;
+		z-index: var(--zIndex_1);
+		width: 4rem;
+		padding: 0.2rem;
+		text-align: center;
+		letter-spacing: 1px;
+		font-weight: 600;
+		color: var(--concrete);
+		background-color: var(--light_blue_100);
+		border-top-right-radius: 0.2rem;
+		border-bottom-right-radius: 0.2rem;
+		overflow: unset;
+	}
+
+	.projectYear::before {
+		content: "";
+		position: absolute;
+		bottom: -5px;
+		left: 0;
+		width: 0;
+		height: 0;
+		border-style: solid;
+		border-width: 0 5px 5px 0;
+		border-color: transparent var(--dark_blue_900) transparent transparent;
 	}
 
 	section {

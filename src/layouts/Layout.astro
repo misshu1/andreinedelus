@@ -33,6 +33,7 @@ const isDynamicText = ROUTES_TO_SHOW_DYNAMIC_HEADER_TEXT.includes(
 				alt="Logo"
 				loading="eager"
 				decoding="sync"
+				fetchpriority="high"
 			/>
 		</div>
 		<Header isDynamicText={isDynamicText} text={headerText} />

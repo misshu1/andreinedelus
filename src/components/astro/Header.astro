@@ -21,6 +21,7 @@ const {isDynamicText, text} = Astro.props;
 				alt={"logo"}
 				loading="eager"
 				decoding="sync"
+				fetchpriority="high"
 			/>
 			<span id="headerTitle" data-content={isDynamicText ? "" : text}
 			></span>
