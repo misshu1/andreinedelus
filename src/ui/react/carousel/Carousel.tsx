@@ -119,6 +119,7 @@ const Carousel: FC<CarouselProps> = ({images = []}) => {
 									decoding="async"
 									width={width}
 									height={height}
+									loading={index === 0 ? "eager" : "lazy"}
 								/>
 							</picture>
 						),
